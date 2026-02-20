@@ -1,0 +1,41 @@
+@charset 'UTF-8';
+
+.about-wrap {
+    display: inline-block;
+}
+
+.about-menu-wrap {
+    height: 40px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.about-menu {
+    margin-bottom: 10px;
+}
+
+.about-menu a {
+    color: #8A8C5D;
+    text-transform: uppercase;
+    margin-top: 1px;
+    border: 1px solid #8A8C5D;
+    border-radius: 3cap;
+    padding: 10px 50px 10px 30px;
+    display: inline-block;
+    text-decoration: none;
+    font-family: "Krona One", sans-serif;
+    letter-spacing: -1px;
+    font-size: 14px;
+}
+
+.about-menu01 a {
+    background-color: #8A8C5D;
+    color: #f7f7f7;
+}
+
+.about-menu a:hover {
+    transform: translateX(30px);
+    transition: all 0.5s ease-in-out;
+}

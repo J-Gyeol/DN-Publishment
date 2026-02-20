@@ -1,33 +1,226 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>도서출판 다운</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
     <script src="./asset/js/jquery.min.js"></script>
     <script src="./asset/js/script.js"></script>
+    <link rel="stylesheet" href="./asset/css/reset.min.css">
+    <link rel="stylesheet" href="./asset/css/font.css">
     <link rel="stylesheet" href="./asset/css/style.css">
 </head>
+
 <body>
-    <div class="container">
-        <ul class="about-menu-wrap">
-            <li class="about-menu about-menu01">
-                <a href="#">dawn' philosophy</a>
-            </li>
-            <li class="about-menu about-menu02">
-                <a href="#">what we do</a>
-            </li>
-            <li class="about-menu about-menu03">
-                <a href="#">our books</a>
-            </li>
-            <li class="about-menu about-menu04">
-                <a href="#">editional standards</a>
-            </li>
-        </ul>
-    </div>
+    <header>
+        <section class="header">
+            <div class="container">
+                <a href="/">
+                    <img src="./asset/images/logo.png" alt="logo">
+                </a>
+                <div class="menu-wrap">
+                    <ul class="menu-list">
+                        <li><a href="#">about</a></li>
+                        <li><a href="#">now' dn</a></li>
+                        <li><a href="#">history</a></li>
+                        <li><a href="#">portfolio</a></li>
+                    </ul>
+                    <ul class="menu-list-btn">
+                        <li>
+                            <a href="#" class="menu-contact">
+                                <p>contact</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="./asset/images/menu.png" alt="menu">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </header>
+
+
+    <main>
+        <!-- <section class="hero container">
+            <div class="hero-wrap">
+                <div class="hero-slide">
+                    <div class="hero-01 bg-setting">
+                        <img src="./asset/images/hero-01.jpg" alt="hero" class="brt_50">
+                    </div>
+                    <div class="hero-02 bg-setting">
+                        <img src="./asset/images/hero-02.jpg" alt="hero" class="brt_50">
+                    </div>
+                    <div class="hero-03 bg-setting">
+                        <img src="./asset/images/hero-03.jpg" alt="hero" class="brt_50">
+                    </div>
+                    <div class="hero-04 bg-setting">
+                        <img src="./asset/images/hero-04.jpg" alt="hero" class="brt_50">
+                    </div>
+                </div>
+                <div class="hero-cont">
+                    <h2 class="title hero-title-main">
+                        이야기를 <span>책으로,</span> <br>
+                        책을 <span>오래 남는 가치</span>로 만듭니다.
+                    </h2>
+                    <p class="subtitle hero-title-sub">
+                        우리는 독자의 삶에 오래 머무는 책을 만듭니다. <br>
+                        기획부터 편집, 디자인, 인쇄까지 출판의 전 과정을 설계하는 출판사입니다.
+                    </p>
+                    <div class="hero-btn">
+                        <button class="contact-drt desc">
+                            <p>출판 상담</p>
+                            <img src="./asset/images/arrow.png" alt="arrow">
+                        </button>
+                        <button class="portfolio-drt desc">
+                            <p>포트폴리오</p>
+                            <img src="./asset/images/arrow.png" alt="arrow">
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </section> -->
+
+    </main>
+
+    <section class="hero container">
+        <div class="swiper mySwiper-hero hero-wrap">
+            <div class="swiper-wrapper hero-slide">
+                <div class="swiper-slide hero-01 bg-setting">
+                    <img src="./asset/images/hero-01.jpg" alt="hero" class="brt_50">
+                </div>
+                <div class="swiper-slide hero-02 bg-setting">
+                    <img src="./asset/images/hero-02.jpg" alt="hero" class="brt_50">
+                </div>
+                <div class="swiper-slide hero-03 bg-setting">
+                    <img src="./asset/images/hero-03.jpg" alt="hero" class="brt_50">
+                </div>
+                <div class="swiper-slide hero-04 bg-setting">
+                    <img src="./asset/images/hero-04.jpg" alt="hero" class="brt_50">
+                </div>
+                <div class="swiper-slide hero-01 bg-setting">
+                    <img src="./asset/images/hero-01.jpg" alt="hero" class="brt_50">
+                </div>
+                <div class="swiper-slide hero-02 bg-setting">
+                    <img src="./asset/images/hero-02.jpg" alt="hero" class="brt_50">
+                </div>
+                <div class="swiper-slide hero-03 bg-setting">
+                    <img src="./asset/images/hero-03.jpg" alt="hero" class="brt_50">
+                </div>
+                <div class="swiper-slide hero-04 bg-setting">
+                    <img src="./asset/images/hero-04.jpg" alt="hero" class="brt_50">
+                </div>
+            </div>
+        </div>
+        <div class="hero-cont">
+            <h2 class="title hero-title-main">
+                이야기를 <span>책으로,</span> <br>
+                책을 <span>오래 남는 가치</span>로 만듭니다.
+            </h2>
+            <p class="subtitle hero-title-sub">
+                우리는 독자의 삶에 오래 머무는 책을 만듭니다. <br>
+                기획부터 편집, 디자인, 인쇄까지 출판의 전 과정을 설계하는 출판사입니다.
+            </p>
+            <div class="hero-btn">
+                <button class="contact-drt desc">
+                    <p>출판 상담</p>
+                    <img src="./asset/images/arrow.png" alt="arrow">
+                </button>
+                <button class="portfolio-drt desc">
+                    <p>포트폴리오</p>
+                    <img src="./asset/images/arrow.png" alt="arrow">
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+
+    </footer>
+
+    <!-- <div class="hero_slide_ui">
+                <div class="m_tit">
+                    <div class="slide_txt">
+                        <div class="item">
+                            <h2 class="title hero-title-main">
+                                이야기를 <span>책으로,</span> <br>
+                                책을 <span>오래 남는 가치</span>로 만듭니다.
+                            </h2>
+                            <p class="subtitle hero-title-sub">
+                                우리는 독자의 삶에 오래 머무는 책을 만듭니다. <br>
+                                기획부터 편집, 디자인, 인쇄까지 출판의 전 과정을 설계하는 출판사입니다.
+                            </p>
+                            <div class="hero-btn">
+                                <button class="contact-drt desc">
+                                    <p>출판 상담</p>
+                                    <img src="./asset/images/arrow.png" alt="arrow">
+                                </button>
+                                <button class="portfolio-drt desc">
+                                    <p>포트폴리오</p>
+                                    <img src="./asset/images/arrow.png" alt="arrow">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="progress_ctn">
+                    <div class="bars_container">
+                        <div class="progress_bar" data-index="0"></div>
+                        <div class="progress_bar" data-index="1"></div>
+                        <div class="progress_bar" data-index="2"></div>
+                        <div class="progress_bar" data-index="3"></div>
+                    </div>
+                    <div class="play_btn playing">
+                        <div class="stop"></div>
+                    </div>
+                </div>
+            </div> -->
+    <!-- 담록 hero slide ui를 따오고 싶은데 어떻게 해야 하는가... -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <!-- <script>
+        var swiper = new Swiper(".mySwiper-hero", {
+            slidesPerView: "auto",
+            centeredSlides: true,
+            effect: "fade",
+            autoplay: {
+                delay: 1500,
+                disableOnInteraction: false,
+            },
+            spaceBetween: 0,
+            keyboard: {
+                enabled: true,
+            },
+        });
+    </script> -->
+    <script>
+        var swiper = new Swiper(".mySwiper-hero", {
+            slidesPerView: "auto",
+            centeredSlides: true,
+            effect: "fade",
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            spaceBetween: 0,
+            keyboard: {
+                enabled: true,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            }
+        });
+    </script>
+
 </body>
+
 </html>

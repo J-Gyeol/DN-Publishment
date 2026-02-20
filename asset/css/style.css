@@ -1,57 +1,292 @@
+@charset 'UTF-8';
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+/* :default */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* .krona-one-regular {
-  font-family: "Krona One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-} */
-
-.container {
-    /* width: 100%; */
-    max-width: 600px;
-    margin: 0 auto
-}
-
-.about-wrap {
-    display: inline-block;
-}
-
-.about-menu-wrap {
-    height: 40px;
-    margin-top: 5px;
-    display: flex;
-    flex-direction: column;
+li {
     list-style: none;
 }
 
-.about-menu {
-    margin-bottom: 10px;
-}
-
-.about-menu a{
-    color: #8A8C5D;
-    text-transform: uppercase;
-    margin-top: 1px;
-    border: 1px solid #8A8C5D;
-    border-radius: 3cap;
-    padding: 10px 50px 10px 30px;
-    display: inline-block;
+a {
     text-decoration: none;
-    font-family: "Krona One", sans-serif;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+/* 변수 선언 */
+:root {
+    --primary-color: #8A8C5D;
+    --secondary-color: #F2EBD5;
+    --black-color: #373825;
+    --gray-color: #EFEFEF;
+    --white-color: #f7f7f7;
+    --point-color: #cf4c21;
+    --text-color: #595336;
+    /* --swiper-wrapper-transition-timing-function: ease-in-out !important; */
+}
+
+body {
+    font-family: 'Pretendard Variable';
+    color: var(--black-color);
+}
+
+
+
+/* common css */
+.en-title {
+    font-family: "DM Serif Text", serif;
+    font-size: 6.25rem;
+    font-weight: 400;
+    color: var(--text-color);
+    line-height: 130%;
+    letter-spacing: -2px;
+}
+
+.title {
+    font-family: 'Pretendard Variable';
+    font-size: 3.75rem;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 130%;
+    letter-spacing: -2px;
+}
+
+.subtitle {
+    font-family: 'Pretendard Variable';
+    font-size: 1.875rem;
+    font-weight: 400;
+    color: var(--text-color);
+    line-height: 130%;
+    letter-spacing: -2px;
+}
+
+.desc {
+    font-family: 'Pretendard Variable';
+    font-size: 1.5625rem;
+    font-weight: 400;
+    color: var(--text-color);
+    line-height: 130%;
+    letter-spacing: -2px;
+}
+
+.bg-setting {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.brt_50 {
+    filter: brightness(50%);
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    max-width: 1680px;
+    margin-left: 3.75rem;
+    margin-right: 3.75rem;
+    margin: 0 auto;
+}
+
+
+
+/* swiper  */
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+}
+
+
+
+/* block none  */
+.pc-none {
+    display: none;
+}
+
+/* .tb-none {
+    display: none;
+}
+.mb-none {
+    display: none;
+} */
+
+
+
+
+/* main section  */
+.header {
+    border-bottom: 1px solid rgba(128, 140, 93, 0.3);
+}
+
+.header .container {
+    height: 7.5rem;
+    /* background-color: #eee; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header img {
+    width: 3.75rem;
+    height: 3.75rem;
+}
+
+.menu-wrap,
+.menu-list,
+.menu-list-btn {
+    display: flex;
+    gap: 3.25rem;
+    align-items: center;
+}
+
+.menu-list li a {
+    font-size: 1.25rem;
     letter-spacing: -1px;
-    font-size: 14px;
+    font-family: "Krona One", sans-serif;
+    text-transform: uppercase;
+    color: var(--primary-color);
 }
 
-.about-menu01 a {
-    background-color: #8A8C5D;
-    color: #f7f7f7;
+.menu-list-btn .menu-contact {
+    position: relative;
+    display: block;
+    width: 10.75rem;
+    height: 2.8125rem;
+    background-color: var(--primary-color);
+    border-radius: 1.875rem;
+    padding: 0.625rem 1.5625rem;
 }
 
-.about-menu a:hover {
-    transform: translateX(30px);
-    transition: all 0.5s ease-in-out;
+.menu-contact p {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.25rem;
+    letter-spacing: -1px;
+    font-family: "Krona One", sans-serif;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+}
+
+.menu-list-btn li a img {
+    width: 3.125rem;
+    height: 3.125rem;
+}
+
+.menu-list li a:hover {
+    color: var(--point-color);
+    transition: all 0.5s ease-out;
+}
+
+.menu-list-btn .menu-contact:hover {
+    background-color: var(--point-color);
+    transition: all 0.5s ease-out;
+}
+
+
+
+/* hero section  */
+.hero {
+    width: 100%;
+    height: 100%;
+    padding-top: 5rem;
+    padding-bottom: 9.5rem;
+    margin: 0 auto;
+}
+
+.hero-wrap {
+    position: relative;
+    width: 100%;
+    height: 53rem;
+    border-radius: 1.875rem;
+    overflow: hidden;
+}
+
+.hero-cont {
+    position: absolute;
+    top: 40%;
+    left: 12%;
+    z-index: 5;
+}
+
+.hero-title-main {
+    font-weight: 300;
+    color: var(--secondary-color);
+    margin-bottom: 1.25rem;
+}
+
+.hero-title-main span {
+    font-weight: 500;
+}
+
+.hero-title-sub {
+    font-weight: 300;
+    color: var(--secondary-color);
+}
+
+.hero-btn {
+    display: flex;
+}
+
+.hero-btn button {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    padding: 0.9375rem 2.5rem 0.9375rem 1.875rem;
+    border-radius: 0.3125rem;
+    margin-top: 4.375rem;
+    margin-right: 1.5rem;
+}
+
+.hero-btn p {
+    font-size: 1.25rem;
+}
+
+.hero-btn button img {
+    width: auto;
+    height: 0.875rem;
+    object-fit: cover;
+}
+
+.hero-btn button:hover {
+    background-color: var(--secondary-color);
+    font-weight: 500;
+    color: var(--point-color);
+    transition: all 0.5s ease-out;
 }

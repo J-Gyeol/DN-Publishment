@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <section class="header">
+        <section class="header" id="top">
             <div class="container">
                 <a href="/">
                     <img src="./asset/images/logo.png" alt="logo">
@@ -47,99 +47,167 @@
 
 
     <main>
-        <!-- <section class="hero container">
-            <div class="hero-wrap">
-                <div class="hero-slide">
-                    <div class="hero-01 bg-setting">
+        <section class="hero container">
+            <div class="swiper mySwiper-hero hero-wrap">
+                <div class="swiper-wrapper hero-slide">
+                    <div class="swiper-slide hero-01 bg-setting">
                         <img src="./asset/images/hero-01.jpg" alt="hero" class="brt_50">
                     </div>
-                    <div class="hero-02 bg-setting">
+                    <div class="swiper-slide hero-02 bg-setting">
                         <img src="./asset/images/hero-02.jpg" alt="hero" class="brt_50">
                     </div>
-                    <div class="hero-03 bg-setting">
+                    <div class="swiper-slide hero-03 bg-setting">
                         <img src="./asset/images/hero-03.jpg" alt="hero" class="brt_50">
                     </div>
-                    <div class="hero-04 bg-setting">
+                    <div class="swiper-slide hero-04 bg-setting">
+                        <img src="./asset/images/hero-04.jpg" alt="hero" class="brt_50">
+                    </div>
+                    <div class="swiper-slide hero-01 bg-setting">
+                        <img src="./asset/images/hero-01.jpg" alt="hero" class="brt_50">
+                    </div>
+                    <div class="swiper-slide hero-02 bg-setting">
+                        <img src="./asset/images/hero-02.jpg" alt="hero" class="brt_50">
+                    </div>
+                    <div class="swiper-slide hero-03 bg-setting">
+                        <img src="./asset/images/hero-03.jpg" alt="hero" class="brt_50">
+                    </div>
+                    <div class="swiper-slide hero-04 bg-setting">
                         <img src="./asset/images/hero-04.jpg" alt="hero" class="brt_50">
                     </div>
                 </div>
-                <div class="hero-cont">
-                    <h2 class="title hero-title-main">
-                        이야기를 <span>책으로,</span> <br>
-                        책을 <span>오래 남는 가치</span>로 만듭니다.
-                    </h2>
-                    <p class="subtitle hero-title-sub">
-                        우리는 독자의 삶에 오래 머무는 책을 만듭니다. <br>
-                        기획부터 편집, 디자인, 인쇄까지 출판의 전 과정을 설계하는 출판사입니다.
+                <ul class="list-size-full pagenation_wrap"> <!-- 1개 이하일때 안보임 -->
+                    <li>
+                        <button type="button">
+                            <div class="indicator-gauge">
+                                <div class="fill"></div>
+                            </div>
+                            <p>slide 1</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="">
+                            <div class="indicator-gauge">
+                                <div class="fill"></div>
+                            </div>
+                            <p>slide 2</p>
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="">
+                            <div class="indicator-gauge">
+                                <div class="fill"></div>
+                            </div>
+                            <p>slide 3</p>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="hero-cont">
+                <h2 class="title hero-title-main">
+                    이야기를 <span>책으로,</span> <br>
+                    책을 <span>오래 남는 가치</span>로 만듭니다.
+                </h2>
+                <p class="subtitle hero-title-sub">
+                    우리는 독자의 삶에 오래 머무는 책을 만듭니다. <br>
+                    기획부터 편집, 디자인, 인쇄까지 출판의 전 과정을 설계하는 출판사입니다.
+                </p>
+                <div class="hero-btn">
+                    <button class="contact-drt desc">
+                        <p>출판 상담</p>
+                        <img src="./asset/images/arrow.png" alt="arrow">
+                    </button>
+                    <button class="portfolio-drt desc">
+                        <p>포트폴리오</p>
+                        <img src="./asset/images/arrow.png" alt="arrow">
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="info">
+            <div class="info-wrap">
+                <div class="info-text">
+                    <h2>clarity and care</h2>
+                    <h2>publish endurance</h2>
+                    <h2>thoughts,</h2>
+                    <h2>printed to last.</h2>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="about-circle"></div>
+            <div class="about-title container">
+                <div class="about-main-title en-title">
+                    <h3>about dn<span>.</span></h3>
+                </div>
+                <div class="about-sub-title desc">
+                    <p>
+                        모든 분야를 다루기보다, <br>
+                        내용의 깊이와 완성도를 지킬 수 있는 분야에 집중합니다.
                     </p>
-                    <div class="hero-btn">
-                        <button class="contact-drt desc">
-                            <p>출판 상담</p>
-                            <img src="./asset/images/arrow.png" alt="arrow">
-                        </button>
-                        <button class="portfolio-drt desc">
-                            <p>포트폴리오</p>
-                            <img src="./asset/images/arrow.png" alt="arrow">
-                        </button>
+                </div>
+            </div>
+            <div class="about-cont-wrap">
+                <div class="about-cont">
+                    <div class="about-more-btn">
+                        <a href="#">
+                            <p>view more</p>
+                            <img src="./asset/images/arrow-right.png" alt="more">
+                        </a>
+                    </div>
+                    <div class="swiper mySwiper-about">
+                        <div class="swiper-wrapper about-slide">
+                            <div class="swiper-slide bg-setting">
+                                <img src="./asset/images/main-about-01.jpg" alt="about 01">
+                                <div class="about-text desc">
+                                    <h3>인문 · 에세이</h3>
+                                    <p>생각을 정리하고 질문을 남기는 책</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide bg-setting">
+                                <img src="./asset/images/main-about-02.jpg" alt="about 02">
+                                <div class="about-text desc">
+                                    <h3>경제 · 경영</h3>
+                                    <p>현장 경험과 통찰이 살아 있는 콘텐츠</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide bg-setting">
+                                <img src="./asset/images/main-about-03.jpg" alt="about 03">
+                                <div class="about-text desc">
+                                    <h3>자기계발 · 라이프스타일</h3>
+                                    <p>실천 가능한 메시지를 담은 책</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide bg-setting">
+                                <img src="./asset/images/main-about-01.jpg" alt="about 01">
+                                <div class="about-text desc">
+                                    <h3>인문 · 에세이</h3>
+                                    <p>생각을 정리하고 질문을 남기는 책</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide bg-setting">
+                                <img src="./asset/images/main-about-02.jpg" alt="about 02">
+                                <div class="about-text desc">
+                                    <h3>경제 · 경영</h3>
+                                    <p>현장 경험과 통찰이 살아 있는 콘텐츠</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide bg-setting">
+                                <img src="./asset/images/main-about-03.jpg" alt="about 03">
+                                <div class="about-text desc">
+                                    <h3>자기계발 · 라이프스타일</h3>
+                                    <p>실천 가능한 메시지를 담은 책</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-        </section> -->
-
+        </section>
     </main>
 
-    <section class="hero container">
-        <div class="swiper mySwiper-hero hero-wrap">
-            <div class="swiper-wrapper hero-slide">
-                <div class="swiper-slide hero-01 bg-setting">
-                    <img src="./asset/images/hero-01.jpg" alt="hero" class="brt_50">
-                </div>
-                <div class="swiper-slide hero-02 bg-setting">
-                    <img src="./asset/images/hero-02.jpg" alt="hero" class="brt_50">
-                </div>
-                <div class="swiper-slide hero-03 bg-setting">
-                    <img src="./asset/images/hero-03.jpg" alt="hero" class="brt_50">
-                </div>
-                <div class="swiper-slide hero-04 bg-setting">
-                    <img src="./asset/images/hero-04.jpg" alt="hero" class="brt_50">
-                </div>
-                <div class="swiper-slide hero-01 bg-setting">
-                    <img src="./asset/images/hero-01.jpg" alt="hero" class="brt_50">
-                </div>
-                <div class="swiper-slide hero-02 bg-setting">
-                    <img src="./asset/images/hero-02.jpg" alt="hero" class="brt_50">
-                </div>
-                <div class="swiper-slide hero-03 bg-setting">
-                    <img src="./asset/images/hero-03.jpg" alt="hero" class="brt_50">
-                </div>
-                <div class="swiper-slide hero-04 bg-setting">
-                    <img src="./asset/images/hero-04.jpg" alt="hero" class="brt_50">
-                </div>
-            </div>
-        </div>
-        <div class="hero-cont">
-            <h2 class="title hero-title-main">
-                이야기를 <span>책으로,</span> <br>
-                책을 <span>오래 남는 가치</span>로 만듭니다.
-            </h2>
-            <p class="subtitle hero-title-sub">
-                우리는 독자의 삶에 오래 머무는 책을 만듭니다. <br>
-                기획부터 편집, 디자인, 인쇄까지 출판의 전 과정을 설계하는 출판사입니다.
-            </p>
-            <div class="hero-btn">
-                <button class="contact-drt desc">
-                    <p>출판 상담</p>
-                    <img src="./asset/images/arrow.png" alt="arrow">
-                </button>
-                <button class="portfolio-drt desc">
-                    <p>포트폴리오</p>
-                    <img src="./asset/images/arrow.png" alt="arrow">
-                </button>
-            </div>
-        </div>
-
-    </section>
 
     <footer>
 
@@ -184,28 +252,38 @@
             </div> -->
     <!-- 담록 hero slide ui를 따오고 싶은데 어떻게 해야 하는가... -->
 
+    <div class="top-btn">
+        <a href="#top">
+            <img src="./asset/images/top.png" alt="top btn">
+        </a>
+    </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-    <!-- <script>
-        var swiper = new Swiper(".mySwiper-hero", {
-            slidesPerView: "auto",
-            centeredSlides: true,
-            effect: "fade",
-            autoplay: {
-                delay: 1500,
-                disableOnInteraction: false,
-            },
-            spaceBetween: 0,
-            keyboard: {
-                enabled: true,
-            },
-        });
-    </script> -->
+
+
     <script>
+        //슬라이드 1개 이하면 페이지네이션 안나옴
+        $('.main_swiper_wrap').each(function () {
+            var dots = $(this).find('.pagenation_wrap');
+            var slider = $(this).find('.swiper-wrapper');
+
+            slider.each(function () {
+                var listLi = $(this).children('.swiper-wrapper li');
+                if (listLi.length < 2) { //1개 이하면 안보이구
+                    dots.hide();
+                } else {
+                    dots.show(); //2개 이상부터 보이도록 하자!
+                }
+            });
+        });
+
         var swiper = new Swiper(".mySwiper-hero", {
             slidesPerView: "auto",
             centeredSlides: true,
             effect: "fade",
+            loop: true,
             autoplay: {
                 delay: 5000,
                 disableOnInteraction: false,
@@ -214,10 +292,47 @@
             keyboard: {
                 enabled: true,
             },
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            }
+            on: {
+                init: function () {
+                    pagenation(1);
+                },
+            },
+        });
+
+        mainSlider.init();
+
+        $(window).on('resize', function () {
+            mainSlider.init();
+        });
+
+        mainSlider.on('slideChange', function () {
+            var slideIdx = mainSlider.realIndex + 1; //슬라이드의 인덱스를 확인하는 경우
+            pagenation(slideIdx);
+        });
+
+        function pagenation(slideIdx) {
+            $('.pagenation_wrap > li button').removeClass('on');
+            $('.pagenation_wrap > li:nth-of-type(' + slideIdx + ') button').addClass('on');
+        }
+
+        $('.pagenation_wrap > li button').on('click', function () {
+            var index = $(this).closest('li').index();
+            mainSlider.slideToLoop(index);
+        });
+
+
+        var swiper = new Swiper(".mySwiper-about", {
+            slidesPerView: "auto",
+            loop: true,
+            mousewheel: true,
+            spaceBetween: 45,
+            keyboard: {
+                enabled: true,
+            },
+            // pagination: {
+            //     el: ".swiper-pagination",
+            //     clickable: true,
+            // },
         });
     </script>
 

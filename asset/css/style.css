@@ -290,3 +290,218 @@ body {
     color: var(--point-color);
     transition: all 0.5s ease-out;
 }
+
+.pagenation_wrap {
+    display: table;
+    width: 100% !important;
+    max-width: 996px;
+    position: relative;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    font-size: 0;
+    text-align: center;
+    pointer-events: none;
+}
+
+.pagenation_wrap>li {
+    display: table-cell;
+    width: auto;
+    height: auto;
+    line-height: 100%;
+    padding: 0;
+    position: relative;
+    font-size: 0;
+    pointer-events: all;
+    padding: 20px;
+}
+
+.pagenation_wrap>li button {
+    appearance: none;
+    display: inline-block;
+    width: 100%;
+    line-height: 34px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    font-size: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.pagenation_wrap>li button p {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 2;
+    color: #fff;
+    width: 100%;
+    letter-spacing: -1.5px;
+    font-family: 'noto2', 'sans-sarif';
+}
+
+.pagenation_wrap>li button.on p {
+    font-family: 'noto5', 'sans-sarif';
+}
+
+.pagenation_wrap>li button .indicator-gauge {
+    width: 100%;
+    height: 7px;
+    background: rgba(255, 255, 255, .3);
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.pagenation_wrap>li button.on .indicator-gauge {
+    background: #fff;
+}
+
+.pagenation_wrap>li button .indicator-gauge .fill {
+    width: 100%;
+    height: 7px;
+    background: var(--point-color);
+    position: relative;
+    transform-origin: 0 0;
+    transform: translateZ(0) scaleX(0);
+    transition: all 0 linear;
+}
+
+.pagenation_wrap>li button.on {
+    pointer-events: none;
+}
+
+.pagenation_wrap>li button.on .indicator-gauge .fill {
+    transform: translateZ(0) scaleX(1);
+    transition: all 5s linear;
+}
+
+
+/* info section  */
+.info {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--black-color);
+    color: var(--secondary-color);
+    position: relative;
+    overflow: hidden;
+}
+.info-wrap {
+    width: 100%;
+    height: 100%;
+}
+.info-text {
+    position: absolute;
+    top: -10%;
+}
+.info-wrap h2 {
+    font-size: 18.75rem;
+    font-family: "DM Serif Text", serif;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 92%;
+    letter-spacing: -2px;
+}
+
+
+/* about section  */
+.about {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, transparent, #efefef);
+}
+.about-title {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-top: 120px;
+    gap: 5rem;
+    align-items: center;
+}
+.about-main-title {
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+.about-main-title span {
+    color: var(--point-color);
+}
+.about-sub-title {
+    margin-bottom: 0.625rem;
+}
+
+.about-cont-wrap {
+    overflow: hidden;
+    width: auto;
+    height: 100%;
+    position: relative;
+}
+
+.about-cont {
+    display: flex;
+    position: absolute;
+    left: 7.5rem;
+    margin-top: 4.125rem;
+    gap: 12.25rem;
+}
+.about-more-btn a {
+    width: 12.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+.about-more-btn a p {
+    width: auto;
+    display: block;
+    font-size: 1.5625rem;
+    font-family: "DM Serif Text", serif;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    align-items: center;
+}
+.about-more-btn img {
+    width: 2.5rem;
+    height: 2.125rem;
+    object-fit: cover;
+}
+
+.about-slide .swiper-slide {
+    width: 30.625rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.375rem;
+    margin-right: 2.8125rem;
+}
+.about-slide .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 28.75rem;
+    object-fit: cover;
+}
+.about-text {
+    display: block;
+    width: 100%;
+    height: fit-content;
+}
+
+
+/* top btn  */
+.top-btn {
+    position: relative;
+}
+.top-btn > a > img {
+    width: 3.75rem;
+    height: 3.75rem;
+    position: fixed;
+    right: 7.5rem;
+    bottom: 2.5rem;
+    z-index: 100;
+}

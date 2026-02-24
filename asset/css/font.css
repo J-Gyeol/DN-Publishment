@@ -87,3 +87,20 @@
   font-weight: 400;
   font-style: normal;
 }
+
+
+/* 조선일보명조 */
+@font-face {
+    font-family: 'ChosunIlboMyungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+
+@font-face {
+    font-family: 'JoseonGaneGothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunSg.woff') format('woff');
+    font-weight: normal;
+    font-display: swap;
+}

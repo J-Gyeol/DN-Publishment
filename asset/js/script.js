@@ -1,55 +1,169 @@
-//슬라이드 1개 이하면 페이지네이션 안나옴
-$('.main_swiper_wrap').each(function () {
-    var dots = $(this).find('.pagenation_wrap');
-    var slider = $(this).find('.swiper-wrapper');
+const AUTOPLAY_DELAY = 3500;
 
-    slider.each(function () {
-        var listLi = $(this).children('.swiper-wrapper li');
-        if (listLi.length < 2) { //1개 이하면 안보이구
-            dots.hide();
-        } else {
-            dots.show(); //2개 이상부터 보이도록 하자!
-        }
-    });
-});
+const $buttons = $('.pagenation_wrap > li button');
+const totalSlides = $buttons.length;
 
-var swiper = new Swiper(".mySwiper-hero", {
-    slidesPerView: "auto",
-    centeredSlides: true,
-    effect: "fade",
+let isPlaying = true;
+let progressTimer = null;
+let pausedTimeLeft = null;
+
+
+/* ================================
+   Swiper 생성 (init 수동)
+================================ */
+
+const mainSlider = new Swiper('.mySwiper-hero', {
+    init: false,
+    slidesPerView: 1,
+    effect: 'fade',
     loop: true,
     autoplay: {
-        delay: 5000,
+        delay: AUTOPLAY_DELAY,
         disableOnInteraction: false,
-    },
-    spaceBetween: 0,
-    keyboard: {
-        enabled: true,
-    },
-    on: {
-        init: function () {
-            pagenation(1);
-        },
-    },
+    }
 });
+
+
+/* ================================
+   Progress 제어
+================================ */
+
+// 전체 초기화
+function resetAllProgress() {
+    $buttons
+        .removeClass('on done')
+        .find('.fill')
+        .css('transform', 'scaleX(0)');
+}
+
+// 현재 슬라이드 progress 업데이트
+function updateProgress() {
+    if (!isPlaying) return;
+
+    const timeLeft = mainSlider.autoplay.timeLeft;
+    if (timeLeft == null) return;
+
+    const progress = 1 - timeLeft / AUTOPLAY_DELAY;
+    const index = mainSlider.realIndex;
+
+    $buttons.eq(index)
+        .find('.fill')
+        .css('transform', `scaleX(${progress})`);
+}
+
+// progress 동기화 시작
+function startProgressSync() {
+    stopProgressSync();
+    progressTimer = setInterval(updateProgress, 16); // 약 60fps
+}
+
+// progress 동기화 중지
+function stopProgressSync() {
+    if (progressTimer) {
+        clearInterval(progressTimer);
+        progressTimer = null;
+    }
+}
+
+
+/* ================================
+   Swiper 이벤트
+================================ */
+
+// 초기 진입
+mainSlider.on('init', () => {
+    resetAllProgress();
+    $buttons.eq(0).addClass('on');
+    startProgressSync();
+});
+
+// 슬라이드 변경
+mainSlider.on('slideChange', () => {
+    const current = mainSlider.realIndex;
+    const prev = (current - 1 + totalSlides) % totalSlides;
+
+    // 이전 슬라이드 완료 처리
+    $buttons.eq(prev)
+        .removeClass('on')
+        .addClass('done')
+        .find('.fill')
+        .css('transform', 'scaleX(1)');
+
+    // 마지막 → 첫 슬라이드면 전체 reset
+    if (prev === totalSlides - 1 && current === 0) {
+        resetAllProgress();
+    }
+
+    $buttons.eq(current).addClass('on');
+});
+
+
+/* ================================
+   Pagination 클릭
+================================ */
+
+$buttons.on('click', function () {
+    const index = $(this).closest('li').index();
+    mainSlider.slideToLoop(index);
+});
+
+
+/* ================================
+   재생 / 정지 (이어 재생 B안)
+================================ */
+
+$('.autoplay-toggle').on('click', function () {
+
+    if (isPlaying) {
+        // ▶️ 정지
+        pausedTimeLeft = mainSlider.autoplay.timeLeft;
+
+        mainSlider.autoplay.stop();
+        stopProgressSync();
+
+        $('.icon-pause').hide();
+        $('.icon-play').show();
+
+    } else {
+        // ▶️ 재생 (이어 진행)
+        if (pausedTimeLeft != null) {
+            mainSlider.params.autoplay.delay = pausedTimeLeft;
+            pausedTimeLeft = null;
+        }
+
+        mainSlider.autoplay.start();
+        startProgressSync();
+
+        // 다음 슬라이드부터는 원래 delay 복구
+        setTimeout(() => {
+            mainSlider.params.autoplay.delay = AUTOPLAY_DELAY;
+        }, 0);
+
+        $('.icon-play').hide();
+        $('.icon-pause').show();
+    }
+
+    isPlaying = !isPlaying;
+});
+
+
+/* ================================
+   Swiper 시작
+================================ */
 
 mainSlider.init();
 
-$(window).on('resize', function () {
-  mainSlider.init();
-});
 
-mainSlider.on('slideChange', function(){
-  var slideIdx = mainSlider.realIndex + 1; //슬라이드의 인덱스를 확인하는 경우
-  pagenation(slideIdx);
-});
-
-function pagenation(slideIdx){
-  $('.pagenation_wrap > li button').removeClass('on');
-  $('.pagenation_wrap > li:nth-of-type('+ slideIdx +') button').addClass('on');
-}
-
-$('.pagenation_wrap > li button').on('click', function () {
-  var index = $(this).closest('li').index();
-  mainSlider.slideToLoop(index);
+var swiper = new Swiper(".mySwiper-about", {
+    slidesPerView: 2.5,
+    spaceBetween: 45,
+    // loop: true,
+    // mousewheel: true,
+    keyboard: {
+        enabled: true,
+    },
+    // pagination: {
+    //     el: ".swiper-pagination",
+    //     clickable: true,
+    // },
 });

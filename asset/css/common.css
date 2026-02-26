@@ -24,6 +24,11 @@ img {
     object-fit: cover;
 }
 
+body {
+    font-family: 'JoseonGaneGothic';
+    color: var(--black-color);
+}
+
 
 
 /* 변수 선언 */
@@ -38,11 +43,7 @@ img {
     /* --swiper-wrapper-transition-timing-function: ease-in-out !important; */
 }
 
-body {
-    /* font-family: 'Pretendard Variable'; */
-    font-family: 'JoseonGaneGothic';
-    color: var(--black-color);
-}
+
 
 
 
@@ -57,7 +58,7 @@ body {
 }
 
 .title {
-    font-family: 'JoseonGaneGothic';
+    font-family: 'MaruBuri';
     font-size: 3.75rem;
     font-weight: 600;
     color: var(--text-color);
@@ -66,7 +67,7 @@ body {
 }
 
 .subtitle {
-    font-family: 'JoseonGaneGothic';
+    font-family: "Noto Serif", serif;
     font-size: 1.875rem;
     font-weight: 400;
     color: var(--text-color);
@@ -81,6 +82,19 @@ body {
     color: var(--text-color);
     line-height: 130%;
     letter-spacing: -1px;
+}
+
+.desc-add {
+    font-family: 'JoseonGaneGothic';
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: #59533680;
+    line-height: 130%;
+    letter-spacing: -1px;
+}
+.desc-point {
+    color: var(--point-color);
+    font-weight: 700;
 }
 
 .comma {

@@ -279,10 +279,13 @@
     width: 100%;
     height: 100%;
     background-image: linear-gradient(to bottom, transparent, #efefef);
-    position: relative; /* 기준점 역할 */
-    overflow: hidden;   /* 원이 밖으로 튀어나가지 않게 자름 */
+    position: relative;
+    /* 기준점 역할 */
+    overflow: hidden;
+    /* 원이 밖으로 튀어나가지 않게 자름 */
     z-index: 1;
 }
+
 .about-wrap::after {
     content: "";
     position: absolute;
@@ -290,7 +293,7 @@
     height: 43.75rem;
     border-radius: 50%;
     background: linear-gradient(-90deg, rgba(239, 239, 239, 0) 10%, rgba(239, 239, 239, 1) 60%);
-    top: -58%;
+    top: -56%;
     right: 0;
     z-index: -100;
     pointer-events: none;
@@ -300,7 +303,7 @@
     width: 100%;
     height: auto;
     display: flex;
-    padding-top: 120px;
+    padding-top: 10rem;
     gap: 5rem;
     align-items: center;
     max-width: 1800px;
@@ -333,7 +336,7 @@
     gap: 12rem;
     padding-right: 0;
     margin-right: 0;
-    margin-bottom: 7.5rem;
+    margin-bottom: 6rem;
     max-width: 1800px;
 }
 
@@ -397,6 +400,167 @@
 
 .about-text h3 {
     font-weight: 600;
+}
+
+
+
+/* active logo section  */
+.m-flow-sec {
+    padding: 70px 0 70px;
+    /* display: none; */
+    background-image: linear-gradient(to top, transparent, #efefef);
+}
+.m-flow-sec .text-slide {
+    display: flex;
+    overflow: hidden;
+}
+
+.m-flow-sec .text-slide h3 {
+    font-family: "DM Serif Text", serif;
+    font-size: 160px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-shadow: -2px 0px 3px #8A8C5D, 0px 2px 3px #8A8C5D, 2px 0px 3px #8A8C5D, 0px -1px 3px #8A8C5D;
+}
+.m-flow-sec .text-slide h3 span {
+    font-family: "Noto Serif", serif;
+    font-size: 60px;
+    font-weight: 400;
+}
+
+.m-flow-sec .text-slide h3.origin {
+    animation: 120s linear 0s infinite normal forwards running origin_left;
+}
+.m-flow-sec .text-slide h3.clone {
+    animation: 120s linear 0s infinite normal none running clone_left;
+}
+
+section.m-flow-sec div .text-slide h3,
+section.m-flow-sec div .text-slide h3 span {
+    color: #f7f7f7;
+}
+
+@keyframes origin_left {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-100%);
+    }
+
+    50.01% {
+        transform: translateX(100%)
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes clone_left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-200%)
+    }
+}
+
+
+
+.process {
+    background-color: var(--black-color);
+    width: 100%;
+    height: 100%;
+    /* color: #fff; */
+}
+.process-wrap {
+    display: flex;
+}
+
+.process-cont {
+    width: 100%;
+    max-width: 1520px;
+    padding: 70px 20px 80px;
+    margin: 0 auto;
+}
+
+.process-cont ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.process-cont li {
+    width: 100%;
+    background-color: var(--secondary-color);
+    border-radius: 50px;
+    padding: 45px;
+}
+
+.process-title,
+.process-desc-wrap,
+.process-cont li img {
+    width: 100%;
+    max-width: 81.5rem;
+    margin: 0 auto;
+}
+
+.process-title {
+    font-family: "Noto Serif", serif;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 1.375rem;
+}
+.process-desc-wrap {
+    display: flex;
+    gap: 1.875rem;
+}
+
+.process-desc-subtitle {
+    font-family: "Noto Serif", serif;
+    width: 100%;
+    max-width: 17.5rem;
+    font-size: 1.6875rem;
+    font-weight: 600;
+}
+
+.process-04 .process-title-left > span {
+    font-family: "Noto Serif", serif;
+    font-weight: 600;
+}
+
+.process-desc {
+    font-weight: 400;
+}
+
+.process-cont li img {
+    display: block;
+    width: 100%;
+    height: 18rem;
+    object-fit: cover;
+    margin-top: 3.15rem;
+}
+
+.process-nav-wrap {
+    color: #fff;
+    border-right: 1px solid rgb(217, 217, 217, 0.5);
+}
+.process-nav-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+.process-nav {
+    display: inline-block;
+    transform: rotate(-90deg);
+    transform-origin: center;
 }
 
 

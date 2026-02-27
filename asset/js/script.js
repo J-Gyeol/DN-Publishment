@@ -167,3 +167,18 @@ var swiper = new Swiper(".mySwiper-about", {
     //     clickable: true,
     // },
 });
+
+
+var swiper = new Swiper(".mySwiper-port", {
+    slidesPerView: 2.5,
+    spaceBetween: 70,
+    // loop: true,
+    // mousewheel: true,
+    keyboard: {
+        enabled: true,
+    },
+    // pagination: {
+    //     el: ".swiper-pagination",
+    //     clickable: true,
+    // },
+});

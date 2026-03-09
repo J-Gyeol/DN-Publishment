@@ -25,7 +25,7 @@ img {
 }
 
 body {
-    font-family: 'JoseonGaneGothic';
+    font-family: 'Pretendard';
     color: var(--black-color);
 }
 
@@ -76,7 +76,7 @@ body {
 }
 
 .desc {
-    font-family: 'JoseonGaneGothic';
+    font-family: 'Pretendard';
     font-size: 1.5625rem;
     font-weight: 400;
     color: var(--text-color);
@@ -85,7 +85,7 @@ body {
 }
 
 .desc-add {
-    font-family: 'JoseonGaneGothic';
+    font-family: 'Pretendard';
     font-size: 1.45rem;
     font-weight: 400;
     color: #59533680;
@@ -118,7 +118,7 @@ body {
 .container {
     width: 100%;
     height: 100%;
-    max-width: 1680px;
+    max-width: 1800px;
     padding-left: 3.75rem;
     padding-right: 3.75rem;
     margin: 0 auto;
@@ -156,3 +156,142 @@ body {
     display: none;
 } */
 
+
+
+/* main section  */
+.header {
+    border-bottom: 1px solid rgba(128, 140, 93, 0.3);
+}
+
+.header .container {
+    height: 7.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header img {
+    width: 3.75rem;
+    height: 3.75rem;
+}
+
+.menu-wrap,
+.menu-list,
+.menu-list-btn {
+    display: flex;
+    gap: 3.25rem;
+    align-items: center;
+}
+
+.menu-list li a {
+    font-size: 1.15rem;
+    letter-spacing: -1px;
+    font-family: "Krona One", sans-serif;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    margin-top: -2px;
+}
+
+.menu-list-btn .menu-contact {
+    position: relative;
+    display: block;
+    width: 10.6rem;
+    height: 2.7rem;
+    background-color: var(--primary-color);
+    border-radius: 1.875rem;
+    padding: 0.6rem 1.5625rem;
+}
+
+.menu-contact p {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.1rem;
+    letter-spacing: -1px;
+    font-family: "Krona One", sans-serif;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+}
+
+.menu-list-btn li a img {
+    width: 3.125rem;
+    height: 3.125rem;
+}
+
+.menu-list li a:hover {
+    color: var(--point-color);
+    transition: all 0.5s ease-out;
+}
+
+.menu-list-btn .menu-contact:hover {
+    background-color: var(--point-color);
+    transition: all 0.5s ease-out;
+}
+
+
+
+/* footer section  */
+.footer-sec {
+    width: 100%;
+    height: 100%;
+    background-color: var(--gray-color);
+    color: var(--text-color);
+    padding-top: 6.25rem;
+    padding-bottom: 5.2rem;
+}
+.footer-tag-list {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: 3.4rem;
+    font-weight: 600;
+}
+.footer-cont {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3.4rem;
+}
+.footer-logo {
+    width: 3.75rem;
+    height: 3.75rem;
+}
+.footer-left-info-list,
+.footer-right-info-list {
+    margin-top: 4.85rem;
+    margin-bottom: 4.85rem;
+    line-height: 140%;
+}
+.footer-sns-list {
+    display: flex;
+    gap: 1.875rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.footer-sns a {
+    width: 1.875rem;
+    height: 1.875rem;
+}
+.footer-sns img {
+    width: 100%;
+    height: auto;
+}
+.footer-left-info span {
+    font-weight: 600;
+}
+.footer-right-wrap {
+    text-align: right;
+}
+.footer-right-title {
+    font-size: 2rem;
+    height: 3.75rem;
+    padding-top: 1.8rem;
+}
+.footer-bottom-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+.footer-menu-list {
+    display: flex;
+    gap: 1.875rem;
+}

@@ -4,78 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 @import url('//fonts.googleapis.com/earlyaccess/nanummyeongjo.css');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
 
-
-/* main section  */
-.header {
-    border-bottom: 1px solid rgba(128, 140, 93, 0.3);
-}
-
-.header .container {
-    height: 7.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header img {
-    width: 3.75rem;
-    height: 3.75rem;
-}
-
-.menu-wrap,
-.menu-list,
-.menu-list-btn {
-    display: flex;
-    gap: 3.25rem;
-    align-items: center;
-}
-
-.menu-list li a {
-    font-size: 1.15rem;
-    letter-spacing: -1px;
-    font-family: "Krona One", sans-serif;
-    text-transform: uppercase;
-    color: var(--primary-color);
-    margin-top: -2px;
-}
-
-.menu-list-btn .menu-contact {
-    position: relative;
-    display: block;
-    width: 10.6rem;
-    height: 2.7rem;
-    background-color: var(--primary-color);
-    border-radius: 1.875rem;
-    padding: 0.6rem 1.5625rem;
-}
-
-.menu-contact p {
-    position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.1rem;
-    letter-spacing: -1px;
-    font-family: "Krona One", sans-serif;
-    text-transform: uppercase;
-    color: var(--secondary-color);
-}
-
-.menu-list-btn li a img {
-    width: 3.125rem;
-    height: 3.125rem;
-}
-
-.menu-list li a:hover {
-    color: var(--point-color);
-    transition: all 0.5s ease-out;
-}
-
-.menu-list-btn .menu-contact:hover {
-    background-color: var(--point-color);
-    transition: all 0.5s ease-out;
-}
 
 
 
@@ -307,7 +237,7 @@
     padding-top: 10rem;
     gap: 5rem;
     align-items: center;
-    max-width: 1800px;
+    max-width: 1860px;
     margin-right: 0;
 }
 
@@ -338,7 +268,7 @@
     padding-right: 0;
     margin-right: 0;
     margin-bottom: 6rem;
-    max-width: 1800px;
+    max-width: 1860px;
 }
 
 .about-more-btn a {
@@ -472,39 +402,87 @@ section.m-flow-sec div .text-slide h3 span {
 
 
 /* process sec  */
-.process {
+.process-sec {
     background-color: var(--black-color);
     width: 100%;
     height: 100%;
-    /* color: #fff; */
 }
 .process-wrap {
+    width: 100%;
+    padding: 70px 20px 80px;
+}
+
+.process-nav::after {
+    content: "";
+    position: absolute;
+    right: -1px; /* border-right 위치에 맞춤 */
+    top: -100vh; /* 위로 충분히 길게 */
+    bottom: -100vh; /* 아래로 충분히 길게 */
+    width: 1px;
+    background-color: rgba(217, 217, 217, 0.5);
+    z-index: 1;
+}
+
+/* 이 경우 부모인 .process-wrap 등에 overflow: hidden;을 주어 
+   화면 밖으로 나가는 선을 잘라줘야 합니다. */
+.process-wrap {
+    overflow: hidden;
+}
+
+.process {
     display: flex;
+    align-items: stretch; /* nav와 cont의 높이를 동일하게 맞춤 */
+    margin-bottom: 20px;
+    min-height: 250px; /* 글자 길이에 따라 적절한 최소 높이 설정 */
+}
+
+.process-nav {
+    /* 1. 레이아웃 고정: 1920px 기준 가로 120px 확보 */
+    width: 7.5rem; /* 120px */
+    flex-shrink: 0;
+    position: relative;
+    color: var(--secondary-color);
+    
+    /* 2. 보더 설정: 이제 박스 자체가 세로로 길기 때문에 오른쪽(border-right)에 줍니다. */
+    /* border-right: 1px solid rgba(217, 217, 217, 0.5); */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5625rem;
+    line-height: 130%;
+    letter-spacing: -1px;
+    font-weight: 600;
+
+    margin-right: 20px;
+}
+
+/* 실제 글자가 들어있는 내부 요소나 텍스트 정렬 */
+.process-nav span, 
+.process-nav-inner { /* HTML에 span이나 div를 추가하지 않았다면 nav 자체에 적용 */
+    position: absolute;
+    white-space: nowrap;
+    transform: rotate(-90deg);
+    
+    /* 회전 후 중앙 정렬을 보장하기 위한 너비 설정 */
+    width: auto; 
+    text-align: center;
 }
 
 .process-cont {
-    width: 100%;
-    max-width: 1520px;
-    padding: 70px 20px 80px;
-    margin: 0 auto;
-}
-
-.process-cont ul {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.process-cont li {
-    width: 100%;
+    flex: 1;
+    width: calc(100% - 7.5rem);
+    max-width: 99rem; /* 약 1584px */
     background-color: var(--secondary-color);
     border-radius: 50px;
     padding: 45px;
+    margin: 0 auto;
 }
 
 .process-title,
 .process-desc-wrap,
-.process-cont li img {
+.process-list li img {
     width: 100%;
     max-width: 81.5rem;
     margin: 0 auto;
@@ -514,20 +492,21 @@ section.m-flow-sec div .text-slide h3 span {
     font-family: "Noto Serif", serif;
     display: flex;
     justify-content: space-between;
-    font-size: 1.875rem;
+    font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1.375rem;
 }
 .process-desc-wrap {
     display: flex;
     gap: 1.875rem;
+    margin-bottom: 3.25rem;
 }
 
 .process-desc-subtitle {
     font-family: "Noto Serif", serif;
     width: 100%;
     max-width: 17.5rem;
-    font-size: 1.6875rem;
+    font-size: 1.6rem;
     font-weight: 600;
 }
 
@@ -538,32 +517,19 @@ section.m-flow-sec div .text-slide h3 span {
 
 .process-desc {
     font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 130%;
 }
 
-.process-cont li img {
+.process-cont img {
     display: block;
     width: 100%;
-    height: 18rem;
+    height: 19rem;
     object-fit: cover;
     margin-top: 3.15rem;
 }
 
-.process-nav-wrap {
-    color: #fff;
-    border-right: 1px solid rgb(217, 217, 217, 0.5);
-}
-.process-nav-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-}
-.process-nav {
-    display: inline-block;
-    transform: rotate(-90deg);
-    transform-origin: center;
-}
+
 
 
 
@@ -600,12 +566,12 @@ section.m-flow-sec div .text-slide h3 span {
 .port-01 .port-text .desc,
 .port-02 .port-text .subtitle,
 .port-02 .port-text .desc {
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .port-01 .port-text span,
 .port-02 .port-text span {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .port-01 .subtitle,
@@ -707,11 +673,11 @@ section.m-flow-sec div .text-slide h3 span {
     border-radius: 1.875rem;
     height: calc(100% - 7.5rem);
     margin-bottom: 1.875rem;
+    padding: 3.375rem 3.375rem 2.125rem 3.375rem;
 }
 
 .contact-send {
     background-image: url("../images/contact-03.png");
-    background-position: center;
     display: flex;
     justify-content: space-between;
     align-items: center;

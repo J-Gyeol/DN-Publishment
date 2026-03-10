@@ -1,0 +1,762 @@
+@charset 'UTF-8';
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('//fonts.googleapis.com/earlyaccess/nanummyeongjo.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+
+
+
+/* hero section  */
+.hero {
+    width: 100%;
+    height: 100%;
+    padding-top: 5rem;
+    padding-bottom: 9.5rem;
+    margin: 0 auto;
+    position: relative;
+}
+
+.hero-wrap {
+    width: 100%;
+    height: 53rem;
+    border-radius: 1.875rem;
+    overflow: hidden;
+}
+
+.hero-cont {
+    position: absolute;
+    top: 22%;
+    left: 10%;
+    z-index: 5;
+}
+
+.hero-title-main {
+    font-family: 'MaruBuri';
+    font-weight: 300;
+    color: var(--secondary-color);
+    margin-bottom: 1.25rem;
+}
+
+.hero-title-main span {
+    font-weight: 700;
+}
+
+.hero-title-sub {
+    font-family: "Noto Serif", serif;
+    font-weight: 300;
+    color: var(--secondary-color);
+}
+
+.hero-btn {
+    display: flex;
+}
+
+.hero-btn button {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    padding: 0.9rem 2.2rem 0.9rem 1.8rem;
+    border-radius: 0.3125rem;
+    margin-top: 4.375rem;
+    margin-right: 1.5rem;
+}
+
+.hero-btn p {
+    font-size: 1.35rem;
+}
+
+.hero-btn button img {
+    width: auto;
+    height: 0.875rem;
+    object-fit: cover;
+}
+
+.hero-btn button:hover {
+    font-weight: 600;
+    background-color: var(--secondary-color);
+    color: var(--point-color);
+    transition: background-color 0.5s ease-out;
+}
+
+.pagenation_wrap {
+    display: flex;
+    gap: 10px;
+}
+
+.pagenation_wrap>li button {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+
+.pagenation_wrap>li button .indicator-gauge {
+    height: 7px;
+    background: rgba(255, 255, 255, .3);
+    position: relative;
+    border-radius: 20px;
+    width: 100px;
+    overflow: hidden;
+}
+
+.pagenation_wrap>li button .indicator-gauge .fill {
+    width: 100%;
+    height: 7px;
+    background: var(--point-color);
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.pagenation_wrap>li button.on {
+    pointer-events: none;
+}
+
+.pagenation_wrap>li button.done .indicator-gauge .fill {
+    transform: scaleX(1);
+}
+
+/* 재생버튼  */
+.autoplay-toggle {
+    background: rgba(255, 255, 255, .2);
+    color: var(--secondary-color);
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.autoplay-toggle .icon-pause {
+    margin-bottom: 4px;
+    margin-left: 1px;
+}
+
+.autoplay-toggle .icon-play {
+    margin-bottom: 2px;
+    margin-left: 0.5px;
+}
+
+.swiper-control {
+    margin-top: 5rem;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+
+
+/* info section  */
+.info {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.info-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.info-wrap h2 {
+    font-size: 4rem;
+    font-family: 'MaruBuri';
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.info-wrap .title-b {
+    font-weight: 600;
+}
+
+.info-wrap p {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    font-family: "Noto Serif", serif;
+    line-height: 160%;
+}
+
+.info-wrap .info-sub-title {
+    font-family: 'MaruBuri';
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+
+/* about section  */
+.about-wrap {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, transparent, #efefef);
+    position: relative;
+    /* 기준점 역할 */
+    overflow: hidden;
+    /* 원이 밖으로 튀어나가지 않게 자름 */
+    z-index: 1;
+}
+
+.about-wrap::after {
+    content: "";
+    position: absolute;
+    width: 68.75rem;
+    height: 43.75rem;
+    border-radius: 50%;
+    background: linear-gradient(-90deg, rgba(239, 239, 239, 0) 10%, rgba(239, 239, 239, 1) 60%);
+    top: -56%;
+    right: 0;
+    z-index: -100;
+    pointer-events: none;
+}
+
+.about-title {
+    width: 100%;
+    height: auto;
+    display: flex;
+    padding-top: 10rem;
+    gap: 5rem;
+    align-items: center;
+    max-width: 1860px;
+    margin-right: 0;
+}
+
+.about-main-title {
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+
+.about-main-title span {
+    color: var(--point-color);
+}
+
+.about-sub-title {
+    margin-bottom: 0.625rem;
+    font-family: "Noto Serif", serif;
+}
+
+.about-cont-wrap {
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+}
+
+.about-cont {
+    display: flex;
+    margin-top: 4.125rem;
+    gap: 12rem;
+    padding-right: 0;
+    margin-right: 0;
+    margin-bottom: 6rem;
+    max-width: 1860px;
+}
+
+.about-more-btn a {
+    width: 13rem;
+    height: 3.125rem;
+    display: flex;
+    padding: 0.75rem 0 0 1.56rem;
+    align-items: center;
+    gap: 0.60rem;
+    position: relative;
+}
+
+.about-more-btn a::before {
+    content: "";
+    width: 3.125rem;
+    height: 3.125rem;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+.about-more-btn a p {
+    width: auto;
+    display: block;
+    font-size: 1.5625rem;
+    font-family: "DM Serif Text", serif;
+    text-transform: uppercase;
+    color: var(--text-color);
+    align-items: center;
+}
+
+.about-more-btn img {
+    width: 2.5rem;
+    height: 2.125rem;
+    object-fit: cover;
+}
+
+.mySwiper-about {
+    flex: 1;
+}
+
+.about-slide .swiper-slide img {
+    width: 100%;
+    height: 27rem;
+    object-fit: cover;
+    border-radius: 0 1.875rem 0 0;
+}
+
+.about-text {
+    width: 100%;
+}
+
+.about-text {
+    font-size: 1.4rem;
+    margin-top: 1.375rem;
+}
+
+.about-text h3 {
+    font-weight: 600;
+}
+
+
+
+/* active logo section  */
+.m-flow-sec {
+    padding: 70px 0 70px;
+    /* display: none; */
+    background-image: linear-gradient(to top, transparent, #efefef);
+}
+.m-flow-sec .text-slide {
+    display: flex;
+    overflow: hidden;
+}
+
+.m-flow-sec .text-slide h3 {
+    font-family: "DM Serif Text", serif;
+    font-size: 160px;
+    font-weight: 400;
+    white-space: nowrap;
+    text-shadow: -2px 0px 3px #8A8C5D, 0px 2px 3px #8A8C5D, 2px 0px 3px #8A8C5D, 0px -1px 3px #8A8C5D;
+}
+.m-flow-sec .text-slide h3 span {
+    font-family: "Noto Serif", serif;
+    font-size: 60px;
+    font-weight: 400;
+}
+
+.m-flow-sec .text-slide h3.origin {
+    animation: 120s linear 0s infinite normal forwards running origin_left;
+}
+.m-flow-sec .text-slide h3.clone {
+    animation: 120s linear 0s infinite normal none running clone_left;
+}
+
+section.m-flow-sec div .text-slide h3,
+section.m-flow-sec div .text-slide h3 span {
+    color: #f7f7f7;
+}
+
+@keyframes origin_left {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-100%);
+    }
+
+    50.01% {
+        transform: translateX(100%)
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes clone_left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-200%)
+    }
+}
+
+
+
+/* process sec  */
+.process-sec {
+    background-color: var(--black-color);
+    width: 100%;
+    height: 100%;
+}
+.process-wrap {
+    width: 100%;
+    padding: 70px 20px 80px;
+}
+
+.process-nav::after {
+    content: "";
+    position: absolute;
+    right: -1px; /* border-right 위치에 맞춤 */
+    top: -100vh; /* 위로 충분히 길게 */
+    bottom: -100vh; /* 아래로 충분히 길게 */
+    width: 1px;
+    background-color: rgba(217, 217, 217, 0.5);
+    z-index: 1;
+}
+
+/* 이 경우 부모인 .process-wrap 등에 overflow: hidden;을 주어 
+   화면 밖으로 나가는 선을 잘라줘야 합니다. */
+.process-wrap {
+    overflow: hidden;
+}
+
+.process {
+    display: flex;
+    align-items: stretch; /* nav와 cont의 높이를 동일하게 맞춤 */
+    margin-bottom: 20px;
+    min-height: 250px; /* 글자 길이에 따라 적절한 최소 높이 설정 */
+}
+
+.process-nav {
+    /* 1. 레이아웃 고정: 1920px 기준 가로 120px 확보 */
+    width: 7.5rem; /* 120px */
+    flex-shrink: 0;
+    position: relative;
+    color: var(--secondary-color);
+    
+    /* 2. 보더 설정: 이제 박스 자체가 세로로 길기 때문에 오른쪽(border-right)에 줍니다. */
+    /* border-right: 1px solid rgba(217, 217, 217, 0.5); */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5625rem;
+    line-height: 130%;
+    letter-spacing: -1px;
+    font-weight: 600;
+
+    margin-right: 20px;
+}
+
+/* 실제 글자가 들어있는 내부 요소나 텍스트 정렬 */
+.process-nav span, 
+.process-nav-inner { /* HTML에 span이나 div를 추가하지 않았다면 nav 자체에 적용 */
+    position: absolute;
+    white-space: nowrap;
+    transform: rotate(-90deg);
+    
+    /* 회전 후 중앙 정렬을 보장하기 위한 너비 설정 */
+    width: auto; 
+    text-align: center;
+}
+
+.process-cont {
+    flex: 1;
+    width: calc(100% - 7.5rem);
+    max-width: 99rem; /* 약 1584px */
+    background-color: var(--secondary-color);
+    border-radius: 50px;
+    padding: 45px;
+    margin: 0 auto;
+}
+
+.process-title,
+.process-desc-wrap,
+.process-list li img {
+    width: 100%;
+    max-width: 81.5rem;
+    margin: 0 auto;
+}
+
+.process-title {
+    font-family: "Noto Serif", serif;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1.375rem;
+}
+.process-desc-wrap {
+    display: flex;
+    gap: 1.875rem;
+    margin-bottom: 3.25rem;
+}
+
+.process-desc-subtitle {
+    font-family: "Noto Serif", serif;
+    width: 100%;
+    max-width: 17.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.process-04 .process-title-left > span {
+    font-family: "Noto Serif", serif;
+    font-weight: 600;
+}
+
+.process-desc {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 130%;
+}
+
+.process-cont img {
+    display: block;
+    width: 100%;
+    height: 19rem;
+    object-fit: cover;
+    margin-top: 3.15rem;
+}
+
+
+
+
+
+/* portfolio sec  */
+.port-wrap {
+    width: 100%;
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+}
+
+.port-cont {
+    display: flex;
+    align-items: center;
+}
+
+.port-01 {
+    margin-bottom: 4.375rem;
+}
+
+.port-01 .port-text,
+.port-02 .port-text {
+    width: 100%;
+    max-width: 37.875rem;
+    margin: 0 auto;
+}
+
+.port-01 .port-text .subtitle,
+.port-02 .port-text .subtitle {
+    font-size: 2.3rem;
+    margin-bottom: 1.25rem;
+}
+
+.port-01 .port-text .subtitle,
+.port-01 .port-text .desc,
+.port-02 .port-text .subtitle,
+.port-02 .port-text .desc {
+    font-weight: 400;
+}
+
+.port-01 .port-text span,
+.port-02 .port-text span {
+    font-weight: 600;
+}
+
+.port-01 .subtitle,
+.port-01 .desc {
+    text-align: right;
+}
+
+.port-slide {
+    width: 55%;
+}
+.port-text-wrap {
+    width: 45%;
+}
+
+.port-slide img {
+    width: 25rem;
+    height: 25rem;
+    object-fit: cover;
+}
+
+.mySwiper-port {
+    flex: 1;
+}
+
+
+
+/* main copy sec  */
+.main-copy-wrap {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.main-copy-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.main-copy-box .title {
+    font-weight: 400;
+    text-align: center;
+}
+.main-copy-box .title-bb,
+.main-copy-box .title span {
+    font-weight: 600;
+    text-align: center;
+}
+
+
+
+/* contact sec  */
+.contact-logo-wrap {
+    padding-top: 4.375rem;
+}
+.contact-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.contact-container {
+    display: flex;
+    gap: 1.875rem;
+    height: 58.125rem;
+    padding-bottom: 4.375rem;
+}
+.contact-logo {
+    width: 3.75rem;
+    height: 5rem;
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+}
+.contact-d-01 {
+    background-image: url("../images/contact-01.png");
+    width: 7%;
+    height: 100%;
+    border-radius: 1.875rem;
+}
+.contact-d-02 {
+    background-image: url("../images/contact-02.png");
+    width: 23%;
+    height: 100%;
+    border-radius: 1.875rem;
+    position: relative;
+}
+.contact-d-02 p {
+    position: absolute;
+    padding: 2.25rem;
+    bottom: 0;
+    left: 0;
+    color: var(--secondary-color);
+}
+.contact-d-03 {
+    width: 70%;
+    height: 100%;
+}
+.contact-box {
+    width: 100%;
+    height: 46.25rem;
+    background-color: var(--secondary-color);
+    border-radius: 1.875rem;
+    height: calc(100% - 7.5rem);
+    margin-bottom: 1.875rem;
+    padding: 3.375rem 3.375rem 2.125rem 3.375rem;
+}
+.contact-box p,
+legend {
+    color: #A69576;
+    font-size: 1.25rem;
+    letter-spacing: -1px;
+    font-weight: 500;
+}
+form {
+    margin-top: 1.8rem;
+    border-bottom: 1px solid #A69576;
+}
+.contact-info {
+    display: flex;
+    justify-content: space-between;
+}
+.contact-info form {
+    width: calc((100% - 1.875rem) / 2);
+}
+input,
+textarea {
+    background: none;
+    border: none;
+    font-size: 1.375rem;
+    font-weight: 300;
+    line-height: 130%;
+    letter-spacing: -1px;
+    caret-color: var(--text-color);
+    color: var(--text-color);
+    border-width: 0;
+    width: 100%;
+    height: 2.5rem;
+    resize: none;
+    font-family: pretendard;
+}
+input:focus,
+textarea:focus {
+    outline: none;
+}
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+.message {
+    width: 100%;
+    height: 15.375rem;
+    margin-top: 0.5rem;
+}
+
+.contact-send {
+    background-image: url("../images/contact-03.png");
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5.625rem;
+    border-radius: 1.875rem;
+    padding: 1.25rem 2.625rem;
+}
+.contact-send p {
+    color: var(--secondary-color);
+    font-size: 2.1875rem;
+    text-transform: uppercase;
+}
+.contact-send img {
+    width: 1.875rem;
+    height: 1.875rem;
+    object-fit: cover;
+}
+
+
+
+/* top btn  */
+.top-btn {
+    position: relative;
+}
+
+.top-btn>a>img {
+    width: 3.75rem;
+    height: 3.75rem;
+    position: fixed;
+    right: 7.5rem;
+    bottom: 2.5rem;
+    z-index: 100;
+}

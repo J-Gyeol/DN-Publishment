@@ -80,7 +80,7 @@
 .hero-btn button:hover {
     font-weight: 600;
     background-color: var(--secondary-color);
-    color: var(--point-color);
+    color: var(--text-color);
     transition: background-color 0.5s ease-out;
 }
 
@@ -473,10 +473,10 @@ section.m-flow-sec div .text-slide h3 span {
 .process-cont {
     flex: 1;
     width: calc(100% - 7.5rem);
-    max-width: 99rem; /* 약 1584px */
+    max-width: 77.5rem; /* 약 1584px */
     background-color: var(--secondary-color);
     border-radius: 50px;
-    padding: 45px;
+    padding: 3rem 5rem;
     margin: 0 auto;
 }
 
@@ -506,7 +506,7 @@ section.m-flow-sec div .text-slide h3 span {
     font-family: "Noto Serif", serif;
     width: 100%;
     max-width: 17.5rem;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 600;
 }
 
@@ -517,7 +517,7 @@ section.m-flow-sec div .text-slide h3 span {
 
 .process-desc {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     line-height: 130%;
 }
 
@@ -683,15 +683,15 @@ legend {
     letter-spacing: -1px;
     font-weight: 500;
 }
-form {
-    margin-top: 1.8rem;
+.contact-form {
+    margin-top: 1.71rem;
     border-bottom: 1px solid #A69576;
 }
 .contact-info {
     display: flex;
     justify-content: space-between;
 }
-.contact-info form {
+.contact-info .contact-form {
     width: calc((100% - 1.875rem) / 2);
 }
 input,
@@ -706,7 +706,7 @@ textarea {
     color: var(--text-color);
     border-width: 0;
     width: 100%;
-    height: 2.5rem;
+    height: 2.4rem;
     resize: none;
     font-family: pretendard;
 }
@@ -726,13 +726,14 @@ textarea::placeholder {
 }
 
 .contact-send {
-    background-image: url("../images/contact-03.png");
+    background-color: var(--black-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     height: 5.625rem;
     border-radius: 1.875rem;
-    padding: 1.25rem 2.625rem;
+    padding: 1.25rem 3.375rem;
 }
 .contact-send p {
     color: var(--secondary-color);

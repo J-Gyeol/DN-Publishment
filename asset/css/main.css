@@ -401,51 +401,22 @@ section.m-flow-sec div .text-slide h3 span {
 
 
 
-/* process sec  */
-.process-sec {
+
+
+#wrapper {
     background-color: var(--black-color);
     width: 100%;
-    height: 100%;
-}
-.process-wrap {
-    width: 100%;
-    padding: 70px 20px 80px;
-}
-
-.process-nav::after {
-    content: "";
-    position: absolute;
-    right: -1px; /* border-right 위치에 맞춤 */
-    top: -100vh; /* 위로 충분히 길게 */
-    bottom: -100vh; /* 아래로 충분히 길게 */
-    width: 1px;
-    background-color: rgba(217, 217, 217, 0.5);
-    z-index: 1;
-}
-
-/* 이 경우 부모인 .process-wrap 등에 overflow: hidden;을 주어 
-   화면 밖으로 나가는 선을 잘라줘야 합니다. */
-.process-wrap {
-    overflow: hidden;
 }
 
 .process {
     display: flex;
-    align-items: stretch; /* nav와 cont의 높이를 동일하게 맞춤 */
-    margin-bottom: 20px;
-    min-height: 250px; /* 글자 길이에 따라 적절한 최소 높이 설정 */
+    align-items: stretch;
 }
 
 .process-nav {
-    /* 1. 레이아웃 고정: 1920px 기준 가로 120px 확보 */
-    width: 7.5rem; /* 120px */
-    flex-shrink: 0;
-    position: relative;
+    width: 7.5rem;
     color: var(--secondary-color);
-    
-    /* 2. 보더 설정: 이제 박스 자체가 세로로 길기 때문에 오른쪽(border-right)에 줍니다. */
-    /* border-right: 1px solid rgba(217, 217, 217, 0.5); */
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -456,79 +427,96 @@ section.m-flow-sec div .text-slide h3 span {
     font-weight: 600;
 
     margin-right: 20px;
-}
-
-/* 실제 글자가 들어있는 내부 요소나 텍스트 정렬 */
-.process-nav span, 
-.process-nav-inner { /* HTML에 span이나 div를 추가하지 않았다면 nav 자체에 적용 */
-    position: absolute;
     white-space: nowrap;
-    transform: rotate(-90deg);
-    
-    /* 회전 후 중앙 정렬을 보장하기 위한 너비 설정 */
-    width: auto; 
-    text-align: center;
-}
 
-.process-cont {
-    flex: 1;
-    width: calc(100% - 7.5rem);
-    max-width: 77.5rem; /* 약 1584px */
-    background-color: var(--secondary-color);
-    border-radius: 50px;
-    padding: 3rem 5rem;
-    margin: 0 auto;
+    flex-shrink: 0;
+    transform: rotate(-90deg);
+    transform-origin: center center;
 }
 
 .process-title,
 .process-desc-wrap,
 .process-list li img {
     width: 100%;
-    max-width: 81.5rem;
-    margin: 0 auto;
 }
 
 .process-title {
     font-family: "Noto Serif", serif;
+    color: var(--text-color);
     display: flex;
     justify-content: space-between;
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1.375rem;
 }
+
 .process-desc-wrap {
     display: flex;
     gap: 1.875rem;
     margin-bottom: 3.25rem;
 }
 
-.process-desc-subtitle {
+.process-desc-wrap .sub {
     font-family: "Noto Serif", serif;
     width: 100%;
     max-width: 17.5rem;
     font-size: 1.5rem;
     font-weight: 600;
+    color: var(--text-color);
 }
 
-.process-04 .process-title-left > span {
-    font-family: "Noto Serif", serif;
-    font-weight: 600;
+.text {
+    font-size: max(1vw, 15px);
+    line-height: 1.4;
+    overflow: hidden;
+    padding-bottom: 20px;
+    color: rgba(255, 255, 255, 0.7);
 }
 
-.process-desc {
-    font-weight: 400;
-    font-size: 1.35rem;
-    line-height: 130%;
+.accordions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4.5rem 0;
 }
 
-.process-cont img {
-    display: block;
+.accordion {
     width: 100%;
-    height: 19rem;
-    object-fit: cover;
-    margin-top: 3.15rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 20px;
 }
 
+.process-cont {
+    width: calc(100% - 7.5rem);
+    max-width: 77.5rem;
+    background-color: var(--secondary-color);
+    border-radius: 50px;
+    padding: 3rem 5rem;
+    overflow: hidden;
+
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.img-box {
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 20px;
+    flex-shrink: 0;
+}
+
+.img-box img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
 
 
 

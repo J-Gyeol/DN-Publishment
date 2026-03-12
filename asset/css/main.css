@@ -403,7 +403,7 @@ section.m-flow-sec div .text-slide h3 span {
 
 
 
-#wrapper {
+/* #wrapper {
     background-color: var(--black-color);
     width: 100%;
 }
@@ -516,7 +516,7 @@ section.m-flow-sec div .text-slide h3 span {
     max-width: 100%;
     height: auto;
     object-fit: contain;
-}
+} */
 
 
 
@@ -524,9 +524,54 @@ section.m-flow-sec div .text-slide h3 span {
 /* portfolio sec  */
 .port-wrap {
     width: 100%;
-    padding-top: 7.5rem;
-    padding-bottom: 7.5rem;
+    padding: 7.5rem 0;
 }
+.port-slide {
+    display: flex;
+    overflow: hidden;
+}
+.port-slide > div {
+    white-space: nowrap;
+}
+.port-slide > div img {
+    margin-right: 1rem;
+}
+
+.port-02 .port-slide > div.origin {
+    animation: 60s linear 0s infinite normal forwards running origin_left;
+    margin-right: 0.2rem;
+}
+.port-02 .port-slide > div.clone {
+    animation: 60s linear 0s infinite normal forwards running origin_left;
+}
+.port-01 .port-slide > div.origin {
+    animation: 60s linear 0s infinite normal forwards running origin_right;
+    margin-right: 0.2rem;
+}
+.port-01 .port-slide > div.clone {
+    animation: 60s linear 0s infinite normal forwards running origin_right;
+}
+
+@keyframes origin_left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%)
+    }
+}
+
+@keyframes origin_right {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
 
 .port-cont {
     display: flex;

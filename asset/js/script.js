@@ -169,19 +169,19 @@ var swiper = new Swiper(".mySwiper-about", {
 });
 
 
-var swiper = new Swiper(".mySwiper-port", {
-    slidesPerView: 2.5,
-    spaceBetween: 70,
-    // loop: true,
-    // mousewheel: true,
-    keyboard: {
-        enabled: true,
-    },
-    // pagination: {
-    //     el: ".swiper-pagination",
-    //     clickable: true,
-    // },
-});
+// var swiper = new Swiper(".mySwiper-port", {
+//     slidesPerView: 2.5,
+//     spaceBetween: 70,
+//     // loop: true,
+//     // mousewheel: true,
+//     keyboard: {
+//         enabled: true,
+//     },
+//     // pagination: {
+//     //     el: ".swiper-pagination",
+//     //     clickable: true,
+//     // },
+// });
 
 
 
@@ -189,55 +189,55 @@ var swiper = new Swiper(".mySwiper-port", {
 /*------------------------------
         Register plugins
         ------------------------------*/
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+// gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 /*------------------------------
 Init ScrollSmoother
 ------------------------------*/
-const scrollerSmoother = ScrollSmoother.create({
-    content: "#content",
-    wrapper: "#wrapper",
-    smooth: true,
-    effects: false,
-    normalizeScroll: true
-});
+// const scrollerSmoother = ScrollSmoother.create({
+//     content: "#content",
+//     wrapper: "#wrapper",
+//     smooth: true,
+//     effects: false,
+//     normalizeScroll: true
+// });
 
-const tl = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".accordions",
-        pin: true,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1,
-        ease: "linear",
-        invalidateOnRefresh: true
-    }
-});
+// const tl = gsap.timeline({
+//     scrollTrigger: {
+//         trigger: ".accordions",
+//         pin: true,
+//         start: "top top",
+//         end: "bottom top",
+//         scrub: 1,
+//         ease: "linear",
+//         invalidateOnRefresh: true
+//     }
+// });
 
-tl.to(".accordion:not(:last-child) .text", {
-    height: 0,
-    paddingBottom: 0,
-    opacity: 0,
-    stagger: 0.5
-});
-tl.to(".accordion:not(:last-child) .nav-text", {
-    width: 0,
-    paddingBottom: 0,
-    opacity: 0,
-    stagger: 0.5
-}, "<");
-tl.to(".accordion:not(:last-child) .process-cont", {
-    paddingTop: "20px",
-    paddingBottom: 0,
-    backgroundColor: '#8A8C5D',
-    stagger: 0.5,
-    duration: 0.5
-}, "<");
-tl.to(
-    ".accordion",
-    {
-        marginBottom: 20,
-        stagger: 0.5
-    },
-    "<"
-);
+// tl.to(".accordion:not(:last-child) .text", {
+//     height: 0,
+//     paddingBottom: 0,
+//     opacity: 0,
+//     stagger: 0.5
+// });
+// tl.to(".accordion:not(:last-child) .nav-text", {
+//     width: 0,
+//     paddingBottom: 0,
+//     opacity: 0,
+//     stagger: 0.5
+// }, "<");
+// tl.to(".accordion:not(:last-child) .process-cont", {
+//     paddingTop: "20px",
+//     paddingBottom: 0,
+//     backgroundColor: '#8A8C5D',
+//     stagger: 0.5,
+//     duration: 0.5
+// }, "<");
+// tl.to(
+//     ".accordion",
+//     {
+//         marginBottom: 20,
+//         stagger: 0.5
+//     },
+//     "<"
+// );

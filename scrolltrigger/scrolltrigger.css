@@ -1,5 +1,5 @@
 /* process sec  */
-.process-sec {
+/* .process-sec {
     background-color: var(--black-color);
     width: 100%;
     height: 100%;
@@ -13,16 +13,14 @@
 .process-nav::after {
     content: "";
     position: absolute;
-    right: -1px; /* border-right 위치에 맞춤 */
-    top: -100vh; /* 위로 충분히 길게 */
-    bottom: -100vh; /* 아래로 충분히 길게 */
+    right: -1px;
+    top: -100vh;
+    bottom: -100vh;
     width: 1px;
     background-color: rgba(217, 217, 217, 0.5);
     z-index: 1;
 }
 
-/* 이 경우 부모인 .process-wrap 등에 overflow: hidden;을 주어 
-   화면 밖으로 나가는 선을 잘라줘야 합니다. */
 .process-wrap {
     overflow: hidden;
 }
@@ -31,26 +29,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding-bottom: 20vh; */
   padding-top: 20px;
 }
 
 .process {
     display: flex;
-    align-items: stretch; /* nav와 cont의 높이를 동일하게 맞춤 */
+    align-items: stretch;
     margin-bottom: 20px;
-    min-height: 250px; /* 글자 길이에 따라 적절한 최소 높이 설정 */
+    min-height: 250px;
 }
 
 .process-nav {
-    /* 1. 레이아웃 고정: 1920px 기준 가로 120px 확보 */
-    width: 7.5rem; /* 120px */
+    width: 7.5rem;
     flex-shrink: 0;
     position: relative;
     color: var(--secondary-color);
-    
-    /* 2. 보더 설정: 이제 박스 자체가 세로로 길기 때문에 오른쪽(border-right)에 줍니다. */
-    /* border-right: 1px solid rgba(217, 217, 217, 0.5); */
     
     display: flex;
     align-items: center;
@@ -64,14 +57,12 @@
     margin-right: 20px;
 }
 
-/* 실제 글자가 들어있는 내부 요소나 텍스트 정렬 */
 .process-nav span, 
-.process-nav-inner { /* HTML에 span이나 div를 추가하지 않았다면 nav 자체에 적용 */
+.process-nav-inner {
     position: absolute;
     white-space: nowrap;
     transform: rotate(-90deg);
-    
-    /* 회전 후 중앙 정렬을 보장하기 위한 너비 설정 */
+
     width: auto; 
     text-align: center;
 }
@@ -79,7 +70,7 @@
 .process-cont {
     flex: 1;
     width: calc(100% - 7.5rem);
-    max-width: 77.5rem; /* 약 1584px */
+    max-width: 77.5rem;
     background-color: var(--secondary-color);
     border-radius: 50px;
     padding: 3rem 5rem;
@@ -134,4 +125,153 @@
     height: 19rem;
     object-fit: cover;
     margin-top: 3.15rem;
+} */
+
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+body {
+    background-color: var(--black-color);
+}
+
+#content {
+    will-change: transform;
+}
+
+.spacer, .process-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 70px 20px 80px;
+}
+
+.process-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stacked-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    margin-bottom: 75vh;
+}
+
+.process-nav {
+    width: 7.5rem;
+    color: var(--secondary-color);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5625rem;
+    line-height: 130%;
+    letter-spacing: -0.5px;
+    font-weight: 600;
+
+    margin-right: 20px;
+    white-space: nowrap;
+
+    flex-shrink: 0;
+    transform: rotate(-90deg);
+    transform-origin: center center;
+}
+
+.card-content {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-color);
+    box-shadow: rgba(0,0,0,0.2) 0 10px 20px, rgba(0,0,0,0.2) 0 6px 6px;
+    
+    border-radius: 50px;
+    padding: 3rem 5rem;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.process-title {
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    display: flex;
+    justify-content: space-between  ;
+}
+
+.process-desc-wrap {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+.img-wrapper img {
+    border-radius: inherit;
+    will-change: clip-path;
+}
+
+.process-title,
+.process-desc-wrap,
+.process-list li img {
+    width: 100%;
+    max-width: 81.5rem;
+    margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+    .stacked-cards {
+        width: clamp(85%, 4vh, 90%);
+    }
+}
+
+@media (max-width: 580px) {
+    .card {
+        flex-direction: column-reverse;
+    }
+
+    .card-content,
+    .img-wrapper {
+        width: 100%;
+    }
+
+    .process-desc-wrap {
+        line-height: 1.3;
+        width: 90%;
+        margin-top: 0;
+    }
+
+    .img-wrapper {
+        height: 60%;
+        border-radius: 10px 10px 0 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .img-wrapper {
+        height: 80%;
+    }
+    
+    .card-content {
+        height: 20%;
+    }
+
+    .process-title {
+        margin-top: 20px;
+    }
+
+    .process-desc-wrap {
+        display: none;
+    }
 }

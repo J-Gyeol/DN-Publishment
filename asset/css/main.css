@@ -538,21 +538,21 @@ section.m-flow-sec div .text-slide h3 span {
 }
 
 .port-02 .port-slide > div.origin {
-    animation: 60s linear 0s infinite normal forwards running origin_left;
+    animation: 40s linear 0s infinite normal forwards running origin_p_left;
     margin-right: 0.2rem;
 }
 .port-02 .port-slide > div.clone {
-    animation: 60s linear 0s infinite normal forwards running origin_left;
+    animation: 40s linear 0s infinite normal forwards running origin_p_left;
 }
 .port-01 .port-slide > div.origin {
-    animation: 60s linear 0s infinite normal forwards running origin_right;
+    animation: 40s linear 0s infinite normal forwards running origin_p_right;
     margin-right: 0.2rem;
 }
 .port-01 .port-slide > div.clone {
-    animation: 60s linear 0s infinite normal forwards running origin_right;
+    animation: 40s linear 0s infinite normal forwards running origin_p_right;
 }
 
-@keyframes origin_left {
+@keyframes origin_p_left {
     0% {
         transform: translateX(0);
     }
@@ -562,7 +562,7 @@ section.m-flow-sec div .text-slide h3 span {
     }
 }
 
-@keyframes origin_right {
+@keyframes origin_p_right {
     0% {
         transform: translateX(-100%);
     }

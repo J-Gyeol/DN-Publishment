@@ -134,15 +134,17 @@ img {
     object-fit: cover;
 }
 
-body {
+#smooth-wrapper {
+    height: 100%;
+    overflow: hidden;
     background-color: var(--black-color);
 }
 
-#content {
+#smooth-content {
     will-change: transform;
 }
 
-.spacer, .process-container {
+.process-container {
     width: 100%;
     min-height: 100vh;
     padding: 70px 20px 80px;
@@ -158,17 +160,28 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 70%;
 }
 
 .card {
+    position: relative;
     width: 100%;
     height: 75vh;
+    margin-bottom: 90vh;
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    overflow: hidden;
     display: flex;
-    margin-bottom: 75vh;
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.process-nav {
+.card-content,
+.img-wrapper {
+    width: 50%;
+    height: 100%;
+}
+
+/* .process-nav {
     width: 7.5rem;
     color: var(--secondary-color);
 
@@ -187,9 +200,9 @@ body {
     flex-shrink: 0;
     transform: rotate(-90deg);
     transform-origin: center center;
-}
+} */
 
-.card-content {
+/* .card-content {
     width: 90%;
     height: 100%;
     display: flex;
@@ -203,42 +216,97 @@ body {
     padding: 3rem 5rem;
     margin: 0 auto;
     overflow: hidden;
+} */
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    padding: 6rem 4rem;
 }
 
 .process-title {
-    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    font-family: "Noto Serif", serif;
     display: flex;
-    justify-content: space-between  ;
+    justify-content: space-between;
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
 }
 
-.process-desc-wrap {
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
+.process-text .sub {
+    font-family: "Noto Serif", serif;
+    width: 100%;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2.3rem;
+}
+
+.process-text .desc {
     line-height: 1.6;
-    margin-top: 15px;
+    width: 100%;
+    font-size: 1.3rem;
+}
+
+.img-wrapper {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .img-wrapper img {
-    border-radius: inherit;
-    will-change: clip-path;
-}
-
-.process-title,
-.process-desc-wrap,
-.process-list li img {
     width: 100%;
-    max-width: 81.5rem;
-    margin: 0 auto;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-@media (max-width: 1200px) {
+
+/* 1680px / 1280px / 1024px / 768px / 540px / 414px */
+
+@media (max-width: 1680px) {
+    .stacked-cards {
+        width: clamp(75%, 4vh, 80%);
+    }
+
+    .process-title {
+        font-size: 2rem;
+    }
+
+    .process-text .sub {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 1280px) {
+    .tb-none {
+        display: none;
+    }
+
+    .stacked-cards {
+        width: clamp(80%, 4vh, 85%);
+    }
+
+    .card-content {
+        width: 60%;
+    }
+
+    .img-wrapper {
+        width: 40%;
+    }
+}
+
+@media (max-width: 1024px) {
     .stacked-cards {
         width: clamp(85%, 4vh, 90%);
     }
 }
 
-@media (max-width: 580px) {
+@media (max-width: 890px) {
     .card {
-        flex-direction: column-reverse;
+        height: 65vh;
+        flex-direction: column;
     }
 
     .card-content,
@@ -246,14 +314,63 @@ body {
         width: 100%;
     }
 
-    .process-desc-wrap {
+    .card-content {
+        padding: 4rem 3.5rem 2.5rem 3.5rem;
+    }
+
+    .process-title {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stacked-cards {
+        width: clamp(90%, 3vh, 95%);
+    }
+
+    .process-title {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .process-text .sub {
+        font-size: 1.2rem;
+        margin-bottom: 1.7rem;
+    }
+
+    .process-text .desc {
+        line-height: 1.6;
+        width: 100%;
+        font-size: 1.125rem;
+    }
+}
+
+@media (max-width: 580px) {
+    .process-container {
+        width: 100%;
+        min-height: 100vh;
+        padding: 60px 20px 0;
+    }
+
+    .stacked-cards {
+        width: clamp(95%, 3vh, 100%);
+    }
+
+    .card {
+        height: 55vh;
+    }
+
+    .card-content {
+        padding: 3.5rem 3rem 2rem 3rem;
+    }
+
+    .process-text {
         line-height: 1.3;
-        width: 90%;
         margin-top: 0;
     }
 
     .img-wrapper {
-        height: 60%;
         border-radius: 10px 10px 0 0;
     }
 }
@@ -262,7 +379,7 @@ body {
     .img-wrapper {
         height: 80%;
     }
-    
+
     .card-content {
         height: 20%;
     }
@@ -271,7 +388,7 @@ body {
         margin-top: 20px;
     }
 
-    .process-desc-wrap {
+    .process-text {
         display: none;
     }
 }

@@ -127,17 +127,10 @@
     margin-top: 3.15rem;
 } */
 
-img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 #smooth-wrapper {
-    height: 100%;
-    overflow: hidden;
-    background-color: var(--black-color);
+    width: 100%;
+    /* height: 100%;
+    overflow: hidden; */
 }
 
 #smooth-content {
@@ -147,13 +140,12 @@ img {
 .process-container {
     width: 100%;
     min-height: 100vh;
-    padding: 70px 20px 80px;
-}
-
-.process-container {
+    padding: 4.375rem 1.25rem 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    background-color: var(--black-color);
 }
 
 .stacked-cards {
@@ -172,7 +164,7 @@ img {
     border-radius: 15px;
     overflow: hidden;
     display: flex;
-    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.1);
 }
 
 .card-content,
@@ -180,43 +172,6 @@ img {
     width: 50%;
     height: 100%;
 }
-
-/* .process-nav {
-    width: 7.5rem;
-    color: var(--secondary-color);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 1.5625rem;
-    line-height: 130%;
-    letter-spacing: -0.5px;
-    font-weight: 600;
-
-    margin-right: 20px;
-    white-space: nowrap;
-
-    flex-shrink: 0;
-    transform: rotate(-90deg);
-    transform-origin: center center;
-} */
-
-/* .card-content {
-    width: 90%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--secondary-color);
-    box-shadow: rgba(0,0,0,0.2) 0 10px 20px, rgba(0,0,0,0.2) 0 6px 6px;
-    
-    border-radius: 50px;
-    padding: 3rem 5rem;
-    margin: 0 auto;
-    overflow: hidden;
-} */
 
 .card-content {
     display: flex;
@@ -375,7 +330,13 @@ img {
     }
 }
 
-@media (max-width: 480px) {
+.spacer {
+    width: 100%;
+    height: 70vh;
+    background-color: antiquewhite;
+}
+
+/* @media (max-width: 480px) {
     .img-wrapper {
         height: 80%;
     }
@@ -391,4 +352,4 @@ img {
     .process-text {
         display: none;
     }
-}
+} */

@@ -184,60 +184,165 @@ var swiper = new Swiper(".mySwiper-about", {
 // });
 
 
+// document.addEventListener("DOMContentLoaded", () => {
+//     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+//     ScrollSmoother.create({
+//         wrapper: "#smooth-wrapper",
+//         content: "#smooth-content",
+//         smooth: 1.2,
+//     });
 
-/*------------------------------
-        Register plugins
-        ------------------------------*/
-// gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+//     const cards = gsap.utils.toArray(".card");
 
-/*------------------------------
-Init ScrollSmoother
-------------------------------*/
-// const scrollerSmoother = ScrollSmoother.create({
-//     content: "#content",
-//     wrapper: "#wrapper",
-//     smooth: true,
-//     effects: false,
-//     normalizeScroll: true
+//     // 초기 상태 세팅
+//     gsap.set(".img-wrapper img", {
+//         // [수정] 좌표에 %를 붙이고, 면적이 0인 상태에서 시작
+//         clipPath: "inset(0% 100% 0% 0%)", 
+//         autoAlpha: 0
+//     });
+
+//     gsap.set(".card-content .process-title, .card-content .process-text", {
+//         y: 30,
+//         autoAlpha: 0
+//     });
+
+//     cards.forEach((card, i) => {
+//         // 1. 카드 쌓임 순서
+//         gsap.set(card, { zIndex: i + 1 });
+
+//         // 2. 계단식 스택 애니메이션 (영상 09:18 설정)
+//         gsap.to(card, {
+//             // 위로 갈수록 작아지는 깊이감
+//             scale: 0.8 + 0.2 * (i / (cards.length - 1 || 1)),
+//             scrollTrigger: {
+//                 trigger: card,
+//                 // [수정] 영상처럼 계단식으로 남으려면 start 위치를 i에 따라 벌려줍니다.
+//                 start: `top ${15 + (i * 40)}px`, 
+//                 endTrigger: ".process-container",
+//                 end: "bottom bottom",
+//                 pin: true,
+//                 pinSpacing: false,
+//                 scrub: true,
+//                 invalidateOnRefresh: true,
+//             },
+//         });
+
+//         // 3. 이미지 & 텍스트 리빌 (영상 07:39 ~ 08:14 설정)
+//         const img = card.querySelector("img");
+//         const textEls = card.querySelectorAll(".process-title, .process-text");
+
+//         ScrollTrigger.create({
+//             trigger: card,
+//             start: `top ${20 + (i * 40)}px`,
+//             once: true,
+//             onEnter: () => {
+//                 const tl = gsap.timeline();
+//                 tl.to(img, {
+//                     // [수정] 이미지를 완전히 보여주는 좌표
+//                     clipPath: "inset(0% 0% 0% 0%)",
+//                     autoAlpha: 1,
+//                     duration: 1.2,
+//                     ease: "power2.inOut",
+//                 })
+//                 .to(textEls, {
+//                     y: 0,
+//                     autoAlpha: 1,
+//                     duration: 0.6,
+//                     stagger: 0.2,
+//                     ease: "power3.out",
+//                 }, "-=1.0"); // 이미지 애니메이션 끝나기 전에 시작
+//             }
+//         });
+//     });
 // });
 
-// const tl = gsap.timeline({
-//     scrollTrigger: {
-//         trigger: ".accordions",
-//         pin: true,
-//         start: "top top",
-//         end: "bottom top",
-//         scrub: 1,
-//         ease: "linear",
-//         invalidateOnRefresh: true
-//     }
-// });
+document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-// tl.to(".accordion:not(:last-child) .text", {
-//     height: 0,
-//     paddingBottom: 0,
-//     opacity: 0,
-//     stagger: 0.5
-// });
-// tl.to(".accordion:not(:last-child) .nav-text", {
-//     width: 0,
-//     paddingBottom: 0,
-//     opacity: 0,
-//     stagger: 0.5
-// }, "<");
-// tl.to(".accordion:not(:last-child) .process-cont", {
-//     paddingTop: "20px",
-//     paddingBottom: 0,
-//     backgroundColor: '#8A8C5D',
-//     stagger: 0.5,
-//     duration: 0.5
-// }, "<");
-// tl.to(
-//     ".accordion",
-//     {
-//         marginBottom: 20,
-//         stagger: 0.5
-//     },
-//     "<"
-// );
+    // 1. Smoother 설정 (이미 다른 곳에서 선언되었다면 이 부분은 무시됨)
+    const smoother = ScrollSmoother.get() || ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 1.2,
+    });
+
+    // 2. 범위를 .process-container 내부로 한정하여 다른 페이지 요소 간섭 차단
+    const container = document.querySelector(".process-container");
+    if (!container) return; // 섹션이 없는 페이지에서는 실행 안 함
+
+    const cards = container.querySelectorAll(".card");
+
+    // 초기 상태 강제 세팅 (JS가 실행되기 전 튀어나오는 현상 방지)
+    gsap.set(cards, { 
+        position: "relative", 
+        top: 0, 
+        zIndex: (i) => i + 1 
+    });
+
+    cards.forEach((card, i) => {
+        const img = card.querySelector("img");
+        const textEls = card.querySelectorAll(".process-title, .process-text");
+
+        // 초기 리빌 상태 세팅
+        gsap.set(img, { clipPath: "inset(0% 100% 0% 0%)", autoAlpha: 0 });
+        gsap.set(textEls, { y: 30, autoAlpha: 0 });
+
+        // [핵심] 카드 스택 애니메이션
+        gsap.to(card, {
+            scale: 0.8 + 0.2 * (i / (cards.length - 1 || 1)),
+            scrollTrigger: {
+                trigger: card,
+                // 'top top'이 아닌 부모 컨테이너가 화면에 들어온 이후부터 계산
+                start: () => `top ${15 + (i * 40)}px`,
+                endTrigger: container,
+                end: "bottom bottom",
+                pin: true,
+                pinSpacing: false,
+                scrub: true,
+                // 페이지 전체 높이에 영향을 주지 않도록 설정
+                invalidateOnRefresh: true,
+                refreshPriority: -1 
+            },
+        });
+
+        // 리빌 애니메이션
+        ScrollTrigger.create({
+            trigger: card,
+            start: "top 80%",
+            once: true,
+            onEnter: () => {
+                const tl = gsap.timeline();
+                tl.to(img, {
+                    clipPath: "inset(0% 0% 0% 0%)",
+                    autoAlpha: 1,
+                    duration: 1.2,
+                    ease: "power2.inOut",
+                })
+                .to(textEls, {
+                    y: 0,
+                    autoAlpha: 1,
+                    duration: 0.6,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                }, "-=1.0");
+            }
+        });
+    });
+
+    // [중요] 모든 요소가 배치된 후 딱 한 번만 좌표 갱신
+    ScrollTrigger.refresh();
+});
+
+
+$(function() {
+    $('.contact-send').on('mouseenter', function() {
+        $('.contact-send div:nth-of-type(1)').stop().fadeOut(400);
+        $('.contact-send div:nth-of-type(2)').stop().fadeIn(400);
+        $('.contact-send div:nth-of-type(2)').css('display', 'flex');
+    });
+    $('.contact-send').on('mouseleave', function() {
+        $('.contact-send div:nth-of-type(1)').stop().fadeIn(400);
+        $('.contact-send div:nth-of-type(2)').stop().fadeOut(400);
+    });
+});

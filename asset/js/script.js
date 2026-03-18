@@ -214,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 scrub: true,
                 // 페이지 전체 높이에 영향을 주지 않도록 설정
                 invalidateOnRefresh: true,
+                anticipatePin: 1,
                 refreshPriority: -1 
             },
         });
@@ -237,6 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     duration: 0.6,
                     stagger: 0.2,
                     ease: "power3.out",
+                    force3D: true,
                 }, "-=1.0");
             }
         });

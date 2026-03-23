@@ -59,6 +59,7 @@
     line-height: 130%;
     letter-spacing: -1px;
 }
+
 .desc-point {
     color: var(--point-color);
     font-weight: 700;
@@ -206,6 +207,7 @@
     padding-top: 6.25rem;
     padding-bottom: 5.2rem;
 }
+
 .footer-tag-list {
     display: flex;
     justify-content: space-between;
@@ -213,51 +215,149 @@
     padding-bottom: 3.4rem;
     font-weight: 600;
 }
+
 .footer-cont {
     display: flex;
     justify-content: space-between;
     margin-top: 3.4rem;
 }
+
 .footer-logo {
     width: 3.75rem;
     height: 3.75rem;
 }
+
 .footer-left-info-list,
 .footer-right-info-list {
     margin-top: 4.85rem;
     margin-bottom: 4.85rem;
     line-height: 140%;
 }
+
 .footer-sns-list {
     display: flex;
     gap: 1.875rem;
     align-items: center;
     margin-bottom: 1.5rem;
 }
+
 .footer-sns a {
     width: 1.875rem;
     height: 1.875rem;
 }
+
 .footer-sns img {
     width: 100%;
     height: auto;
 }
+
 .footer-left-info span {
     font-weight: 600;
 }
+
 .footer-right-wrap {
     text-align: right;
 }
+
 .footer-right-title {
     font-size: 2rem;
     height: 3.75rem;
     padding-top: 1.8rem;
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    color: var(--text-color);
+    line-height: 130%;
+    letter-spacing: -1px;
 }
+
 .footer-bottom-wrap {
     display: flex;
     justify-content: space-between;
 }
+
 .footer-menu-list {
     display: flex;
     gap: 1.875rem;
+}
+
+
+/* top btn  */
+.top-btn {
+    position: relative;
+}
+
+.top-btn>a>img {
+    width: 3.75rem;
+    height: 3.75rem;
+    position: fixed;
+    right: 7.5rem;
+    bottom: 2.5rem;
+    z-index: 100;
+    box-shadow: 0 0.2rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.top-hover {
+    display: none;
+}
+
+
+@media(max-width: 1280px) {
+    html {
+        font-size: 15px;
+    }
+
+    .en-title {
+        font-size: 6rem;
+        line-height: 130%;
+        letter-spacing: -1px;
+    }
+
+    .title {
+        font-size: 3.2rem;
+    }
+
+    .subtitle {
+        font-size: 1.5rem;
+    }
+
+    .desc {
+        font-size: 1.4rem;
+    }
+
+    .container {
+        max-width: 1190px;
+        padding-left: 2.8125rem;
+        padding-right: 2.8125rem;
+    }
+}
+
+
+@media(max-width: 1024px) {
+    html {
+        font-size: 14px;
+    }
+
+    .en-title {
+        font-size: 6rem;
+        line-height: 130%;
+        letter-spacing: -1px;
+    }
+
+    .title {
+        font-size: 3.2rem;
+    }
+
+    .subtitle {
+        font-size: 1.5rem;
+    }
+
+    .desc {
+        font-size: 1.4rem;
+    }
+
+    .container {
+        max-width: 1190px;
+        padding-left: 2.8125rem;
+        padding-right: 2.8125rem;
+    }
 }

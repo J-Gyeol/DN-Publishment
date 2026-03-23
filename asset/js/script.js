@@ -186,10 +186,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = container.querySelectorAll(".card");
 
     // 초기 상태 강제 세팅 (JS가 실행되기 전 튀어나오는 현상 방지)
-    gsap.set(cards, { 
-        position: "relative", 
-        top: 0, 
-        zIndex: (i) => i + 1 
+    gsap.set(cards, {
+        position: "relative",
+        top: 0,
+        zIndex: (i) => i + 1
     });
 
     cards.forEach((card, i) => {
@@ -215,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 // 페이지 전체 높이에 영향을 주지 않도록 설정
                 invalidateOnRefresh: true,
                 anticipatePin: 1,
-                refreshPriority: -1 
+                refreshPriority: -1
             },
         });
 
@@ -232,31 +232,56 @@ document.addEventListener("DOMContentLoaded", () => {
                     duration: 1.2,
                     ease: "power2.inOut",
                 })
-                .to(textEls, {
-                    y: 0,
-                    autoAlpha: 1,
-                    duration: 0.6,
-                    stagger: 0.2,
-                    ease: "power3.out",
-                    force3D: true,
-                }, "-=1.0");
+                    .to(textEls, {
+                        y: 0,
+                        autoAlpha: 1,
+                        duration: 0.6,
+                        stagger: 0.2,
+                        ease: "power3.out",
+                        force3D: true,
+                    }, "-=1.0");
             }
         });
     });
 
     // [중요] 모든 요소가 배치된 후 딱 한 번만 좌표 갱신
     ScrollTrigger.refresh();
+
+
+    // top button
+    const topBtn = document.querySelector('.top-button');
+
+    if (topBtn) {
+        topBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // HTML 기본 앵커 이동 막기
+
+            // smoother 인스턴스를 사용해 0(최상단) 위치로 부드럽게 이동
+            // 0 대신 특정 요소의 ID(예: "#header")를 넣어도 됩니다.
+            smoother.scrollTo(0, true);
+        });
+    }
+
+
 });
 
 
-$(function() {
-    $('.contact-send').on('mouseenter', function() {
+$(function () {
+    $('.contact-send').on('mouseenter', function () {
         $('.contact-send div:nth-of-type(1)').stop().fadeOut(400);
         $('.contact-send div:nth-of-type(2)').stop().fadeIn(400);
         $('.contact-send div:nth-of-type(2)').css('display', 'flex');
     });
-    $('.contact-send').on('mouseleave', function() {
+    $('.contact-send').on('mouseleave', function () {
         $('.contact-send div:nth-of-type(1)').stop().fadeIn(400);
         $('.contact-send div:nth-of-type(2)').stop().fadeOut(400);
     });
+});
+
+
+$('.top-button').on('mouseover', function() {
+    $('.top-hover').stop().fadeIn(300);
+});
+$('.top-button').on('mouseleave', function() {
+    $('.top-button img').stop().fadeIn(300);
+    $('.top-hover').stop().fadeOut(300);
 });

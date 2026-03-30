@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('//fonts.googleapis.com/earlyaccess/nanummyeongjo.css');
+
+
 /* pretendard */
 @font-face {
     font-family: 'Pretendard';
@@ -64,7 +69,6 @@
 
 
 /* DM Serif Text */
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
 
 .dm-serif-text-regular {
   font-family: "DM Serif Text", serif;
@@ -80,8 +84,6 @@
 
 
 /* Krona One  */
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-
 .krona-one-regular {
   font-family: "Krona One", sans-serif;
   font-weight: 400;
@@ -107,9 +109,6 @@
 
 
 /* 나눔 명조 */
-@import url('//fonts.googleapis.com/earlyaccess/nanummyeongjo.css');
-
-
 @font-face {
     font-family: 'MaruBuri';
     src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-ExtraLight.woff2);

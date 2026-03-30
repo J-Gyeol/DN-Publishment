@@ -1,10 +1,9 @@
 @charset 'UTF-8';
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-@import url('//fonts.googleapis.com/earlyaccess/nanummyeongjo.css');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import url("./reset.min.css");
+@import url("./reset.css");
+@import url("./font.css");
+@import url("./common.css");
 
 
 
@@ -48,6 +47,7 @@
     font-family: "Noto Serif", serif;
     font-weight: 300;
     color: var(--secondary-color);
+    line-height: 1.6;
 }
 
 .hero-btn {
@@ -179,11 +179,11 @@
 }
 
 .info-wrap h2 {
-    font-size: 4rem;
     font-family: 'MaruBuri';
     color: var(--secondary-color);
     margin-bottom: 2rem;
     font-weight: 400;
+    width: 40rem;
 }
 
 .info-wrap .title-b {
@@ -341,6 +341,7 @@
     /* display: none; */
     background-image: linear-gradient(to top, transparent, #efefef);
 }
+
 .m-flow-sec .text-slide {
     display: flex;
     overflow: hidden;
@@ -353,6 +354,7 @@
     white-space: nowrap;
     text-shadow: -2px 0px 3px #8A8C5D, 0px 2px 3px #8A8C5D, 2px 0px 3px #8A8C5D, 0px -1px 3px #8A8C5D;
 }
+
 .m-flow-sec .text-slide h3 span {
     font-family: "Noto Serif", serif;
     font-size: 3.75rem;
@@ -362,6 +364,7 @@
 .m-flow-sec .text-slide h3.origin {
     animation: 120s linear 0s infinite normal forwards running origin_left;
 }
+
 .m-flow-sec .text-slide h3.clone {
     animation: 120s linear 0s infinite normal none running clone_left;
 }
@@ -502,29 +505,35 @@ section.m-flow-sec div .text-slide h3 span {
     width: 100%;
     padding: 7.5rem 0;
 }
+
 .port-slide {
     display: flex;
     overflow: hidden;
 }
-.port-slide > div {
+
+.port-slide>div {
     white-space: nowrap;
 }
-.port-slide > div img {
+
+.port-slide>div img {
     margin-right: 1rem;
 }
 
-.port-02 .port-slide > div.origin {
+.port-02 .port-slide>div.origin {
     animation: 40s linear 0s infinite normal forwards running origin_p_left;
     margin-right: 0.2rem;
 }
-.port-02 .port-slide > div.clone {
+
+.port-02 .port-slide>div.clone {
     animation: 40s linear 0s infinite normal forwards running origin_p_left;
 }
-.port-01 .port-slide > div.origin {
+
+.port-01 .port-slide>div.origin {
     animation: 40s linear 0s infinite normal forwards running origin_p_right;
     margin-right: 0.2rem;
 }
-.port-01 .port-slide > div.clone {
+
+.port-01 .port-slide>div.clone {
     animation: 40s linear 0s infinite normal forwards running origin_p_right;
 }
 
@@ -542,6 +551,7 @@ section.m-flow-sec div .text-slide h3 span {
     0% {
         transform: translateX(-100%);
     }
+
     100% {
         transform: translateX(0);
     }
@@ -590,6 +600,7 @@ section.m-flow-sec div .text-slide h3 span {
 .port-slide {
     width: 55%;
 }
+
 .port-text-wrap {
     width: 45%;
 }
@@ -634,6 +645,7 @@ section.m-flow-sec div .text-slide h3 span {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0 0 7.5rem;
 }
 
 .main-copy-box {
@@ -643,42 +655,37 @@ section.m-flow-sec div .text-slide h3 span {
     text-align: center;
 }
 
+/* 기본 상태: 애니메이션 없음 */
 .main-copy-box .title {
     position: relative;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 400;
+    color: var(--black-color);
     margin-bottom: 1.2rem;
     width: fit-content;
     max-width: 0;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 3px solid transparent; 
+    border-right: 3px solid transparent;
 }
 
-/* 애니메이션 설정 상세:
-   - typing: 글자가 나타남
-   - cursor-show: 애니메이션 시작 시 커서 색상을 흰색으로 변경
-   - blink: 0.5초 주기로 정해진 횟수만큼 깜빡임 (마지막은 transparent로 종료)
-*/
-
-/* 1번째 문장: 0.5초 시작 / 2초 동안 타이핑 / 0.5초 주기로 4번 깜빡임 (총 2초) */
-.main-copy-box .title:nth-child(1) {
-    animation: 
+/* [.is-active] 클래스가 붙었을 때만 애니메이션 실행 */
+.main-copy-box.is-active .title:nth-child(1) {
+    animation:
         typing 2s steps(20) 0.5s forwards,
         cursor-show 0.1s 0.5s forwards,
-        blink 0.5s 0.5s 4 forwards; 
+        blink 0.5s 0.5s 4 forwards;
 }
 
-/* 2번째 문장: 2.5초 시작 / 2초 동안 타이핑 / 0.5초 주기로 4번 깜빡임 (총 2초) */
-.main-copy-box .title:nth-child(2) {
-    animation: 
+.main-copy-box.is-active .title:nth-child(2) {
+    animation:
         typing 2s steps(20) 2.5s forwards,
         cursor-show 0.1s 2.5s forwards,
         blink 0.5s 2.5s 4 forwards;
 }
 
-/* 3번째 문장: 4.5초 시작 / 2.5초 동안 타이핑 / 0.5초 주기로 5번 깜빡임 (총 2.5초) */
-.main-copy-box .title:nth-child(3) {
-    animation: 
+.main-copy-box.is-active .title:nth-child(3) {
+    animation:
         typing 2.5s steps(25) 4.5s forwards,
         cursor-show 0.1s 4.5s forwards,
         blink 0.5s 4.5s 5 forwards;
@@ -689,23 +696,41 @@ section.m-flow-sec div .text-slide h3 span {
     font-weight: 600;
 }
 
-.main-copy-box .title span { color: var(--point-color); }
+.main-copy-box .title span {
+    color: var(--point-color);
+}
+
 
 /* [애니메이션 정의] */
 
 @keyframes typing {
-    from { max-width: 0; }
-    to { max-width: 100%; }
+    from {
+        max-width: 0;
+    }
+
+    to {
+        max-width: 100%;
+    }
 }
 
 @keyframes cursor-show {
-    to { border-right-color: #fff; }
+    to {
+        border-right-color: #fff;
+    }
 }
 
 /* 깜빡임 애니메이션: 100% 지점에서 투명하게 끝나도록 설정 */
 @keyframes blink {
-    0%, 49% { border-right-color: var(--gray-color); }
-    50%, 100% { border-right-color: transparent; }
+
+    0%,
+    49% {
+        border-right-color: var(--gray-color);
+    }
+
+    50%,
+    100% {
+        border-right-color: transparent;
+    }
 }
 
 
@@ -715,29 +740,34 @@ section.m-flow-sec div .text-slide h3 span {
 .contact-logo-wrap {
     padding-top: 4.375rem;
 }
+
 .contact-logo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .contact-container {
     display: flex;
     gap: 1.875rem;
     height: 58.125rem;
     padding-bottom: 4.375rem;
 }
+
 .contact-logo {
     width: 3.75rem;
     height: 5rem;
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
 }
+
 .contact-d-01 {
     background-image: url("../images/contact-01.png");
     width: 7%;
     height: 100%;
     border-radius: 1.875rem;
 }
+
 .contact-d-02 {
     background-image: url("../images/contact-02.png");
     width: 23%;
@@ -745,6 +775,7 @@ section.m-flow-sec div .text-slide h3 span {
     border-radius: 1.875rem;
     position: relative;
 }
+
 .contact-d-02 p {
     position: absolute;
     padding: 2.25rem;
@@ -752,26 +783,31 @@ section.m-flow-sec div .text-slide h3 span {
     left: 0;
     color: var(--secondary-color);
 }
+
 .contact-d-03 {
     width: 70%;
     height: 100%;
 }
+
 .contact-d-03 form,
 .contact-d-03 form fieldset {
     height: 100%;
 }
+
 .contact-d-03 form fieldset {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 1.875rem;
 }
+
 .contact-box {
     background-color: var(--secondary-color);
     border-radius: 1.875rem;
     height: calc(100% - 7.5rem);
     padding: 3.375rem 3.375rem 2.125rem 3.375rem;
 }
+
 .contact-box p,
 legend {
     color: #A69576;
@@ -779,17 +815,21 @@ legend {
     letter-spacing: -1px;
     font-weight: 500;
 }
+
 .contact-form {
     margin-top: 1.71rem;
     border-bottom: 1px solid #A69576;
 }
+
 .contact-info {
     display: flex;
     justify-content: space-between;
 }
+
 .contact-info .contact-form {
     width: calc((100% - 1.875rem) / 2);
 }
+
 input,
 textarea {
     background: none;
@@ -806,15 +846,18 @@ textarea {
     resize: none;
     font-family: pretendard;
 }
+
 input:focus,
 textarea:focus {
     outline: none;
 }
+
 input::placeholder,
 textarea::placeholder {
     color: var(--text-color);
     opacity: 0.5;
 }
+
 .message {
     width: 100%;
     height: 15.375rem;
@@ -828,7 +871,8 @@ textarea::placeholder {
     border-radius: 1.875rem;
     position: relative;
 }
-.contact-send > div {
+
+.contact-send>div {
     padding: 1.25rem 3.375rem;
     width: 100%;
     height: 100%;
@@ -840,6 +884,7 @@ textarea::placeholder {
     align-items: center;
     justify-content: space-between;
 }
+
 .send-txt {
     font-family: "DM Serif Text", serif;
     color: var(--secondary-color);
@@ -848,11 +893,13 @@ textarea::placeholder {
     line-height: 130%;
     letter-spacing: -1px;
 }
+
 .send-img {
     width: 2.3rem;
     height: 2.3rem;
     object-fit: cover;
 }
+
 .contact-send div:nth-of-type(2) {
     display: none;
 }
@@ -864,6 +911,7 @@ textarea::placeholder {
     .about-cont {
         gap: 7rem;
     }
+
     .about-slide .swiper-slide img {
         height: 24rem;
     }
@@ -871,9 +919,11 @@ textarea::placeholder {
     .stacked-cards {
         width: clamp(75%, 4vh, 80%);
     }
+
     .process-title {
         font-size: 2rem;
     }
+
     .process-text .sub {
         font-size: 1.3rem;
         margin-bottom: 2rem;
@@ -881,9 +931,20 @@ textarea::placeholder {
 }
 
 @media(max-width: 1280px) {
-    .about-cont {
-        gap: 5rem;
+
+    .info-wrap h2 {
+        font-size: 3.5rem;
     }
+
+    .about-cont {
+        gap: 4rem;
+    }
+
+    .about-sub-title {
+        margin-bottom: 0;
+        font-family: "Noto Serif", serif;
+    }
+
     .about-slide .swiper-slide img {
         height: 22rem;
     }
@@ -891,9 +952,11 @@ textarea::placeholder {
     .stacked-cards {
         width: clamp(80%, 4vh, 85%);
     }
+
     .card-content {
         width: 60%;
     }
+
     .img-wrapper {
         width: 40%;
     }
@@ -901,12 +964,15 @@ textarea::placeholder {
     .contact-d-01 {
         display: none;
     }
+
     .contact-d-02 {
         width: 15%;
     }
+
     .contact-d-03 {
         width: 85%;
     }
+
     .contact-d-02 p {
         display: none;
     }
@@ -914,18 +980,91 @@ textarea::placeholder {
 
 
 @media (max-width: 1024px) {
-    .about-slide .swiper-slide img {
-        height: 18rem;
+    .menu-list {
+        display: none;
+    }
+
+    .menu-list-btn .menu-contact {
+        display: none;
+    }
+
+    .hero-cont {
+        top: 25%;
+    }
+
+    .swiper-control {
+        margin-top: 7rem;
+    }
+
+    .pagenation_wrap>li button .indicator-gauge {
+        width: 80px;
+    }
+
+    .info-wrap h2 {
+        font-size: 3rem;
+    }
+    .info-wrap .info-sub-title {
+        font-size: 1.6rem;
+    }
+    .info-wrap p {
+        font-size: 1.3rem;
+    }
+
+    .about-more-btn {
+        display: none;
+    }
+
+    .about-title {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: inherit;
+    }
+
+    .about-main-title {
+        font-size: 5rem;
+    }
+
+    .about-sub-title {
+        font-size: 1.5rem;
+    }
+
+    .about-cont {
+        margin-top: 3rem;
+    }
+
+    .m-flow-sec .text-slide h3 {
+        font-size: 9rem;
+    }
+
+    .card {
+        height: 70vh;
     }
 
     .stacked-cards {
         width: clamp(85%, 4vh, 90%);
     }
+
+    .port-01 .port-text .subtitle,
+    .port-02 .port-text .subtitle {
+        font-size: 2rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .port-slide img {
+        width: 22rem;
+        height: 22rem;
+    }
+
     .contact-d-02 {
         display: none;
     }
+
     .contact-d-03 {
         width: 100%;
+    }
+
+    .send-txt {
+        font-size: 2rem;
     }
 }
 
@@ -935,58 +1074,237 @@ textarea::placeholder {
         height: 65vh;
         flex-direction: column;
     }
+
     .card-content,
     .img-wrapper {
         width: 100%;
     }
+
     .card-content {
         padding: 4rem 3.5rem 2.5rem 3.5rem;
     }
+
     .process-title {
         font-size: 1.8rem;
     }
 }
 
 @media (max-width: 768px) {
+
+    .hero {
+        padding-top: 4rem;
+        padding-bottom: 7rem;
+    }
+
+    .hero-cont {
+        text-align: center;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .hero-cont {
+        width: 80%;
+    }
+
+    .hero-title-sub {
+        font-size: 1.4rem;
+    }
+
+    .hero-btn {
+        justify-content: center;
+    }
+
+    .hero-btn p {
+        font-size: 1.1rem;
+    }
+
+    .pagenation_wrap>li button .indicator-gauge {
+        width: 60px;
+    }
+
+    .swiper-control {
+        justify-content: center;
+    }
+
+    .about-main-title {
+        font-size: 4.5rem;
+    }
+
+    .about-sub-title {
+        font-size: 1.4rem;
+    }
+
+    .info-wrap h2 {
+        width: 35rem;
+    }
+
+    .m-flow-sec .text-slide h3 {
+        font-size: 8rem;
+    }
+
+    .card {
+        height: 60vh;
+    }
+
     .stacked-cards {
         width: clamp(90%, 3vh, 95%);
     }
+
     .process-title {
         font-size: 1.6rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
     }
+
     .process-text .sub {
         font-size: 1.2rem;
         margin-bottom: 1.7rem;
     }
+
     .process-text .desc {
         line-height: 1.6;
         width: 100%;
         font-size: 1.125rem;
     }
+
+    .port-wrap {
+        padding-left: 1.54rem;
+        padding-right: 1.54rem;
+    }
+
+    .port-text-wrap {
+        width: 100%;
+    }
+
+    .port-01 {
+        flex-direction: column-reverse;
+        margin-bottom: 6rem;
+    }
+
+    .port-02 {
+        flex-direction: column;
+    }
+
+    .port-01>.container,
+    .port-02>.container {
+        padding: 0;
+    }
+
+    .port-01 .port-text,
+    .port-02 .port-text {
+        margin: 0 0 2rem;
+        max-width: 100%;
+    }
+
+    .port-01 .port-text .subtitle,
+    .port-02 .port-text .subtitle {
+        font-size: 1.8rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .port-01 .subtitle,
+    .port-01 .desc {
+        text-align: left;
+    }
+
+    .port-02 .subtitle,
+    .port-02 .desc {
+        text-align: right;
+    }
+
+    .port-01 .desc,
+    .port-02 .desc {
+        font-size: 1.3rem;
+    }
+
+    .port-slide {
+        width: 100%;
+        padding-left: 1.54rem;
+        padding-right: 1.54rem;
+    }
+
+    .port-slide img {
+        width: 18rem;
+        height: 18rem;
+    }
+
+    .main-copy-box .title {
+        margin-bottom: 1rem;
+    }
+
+    .contact-box {
+        padding: 3rem 3rem 2rem 3rem;
+    }
+
+    .message {
+        height: 18rem;
+    }
+
+    .send-txt {
+        font-size: 1.8rem;
+    }
 }
 
 @media (max-width: 540px) {
+
+    .info-wrap h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.2rem;
+    }
+    .info-wrap .info-sub-title {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+    .info-wrap p {
+        font-size: 1.2rem;
+    }
+    .hero-title-sub {
+        font-size: 1.3rem;
+    }
+
+    .about-main-title {
+        font-size: 4rem;
+    }
+
+    .about-sub-title,
+    .about-text {
+        font-size: 1.3rem;
+    }
+
+    .m-flow-sec .text-slide h3 {
+        font-size: 7rem;
+    }
+
     .process-container {
         width: 100%;
         min-height: 100vh;
         padding: 60px 20px 0;
     }
+
     .stacked-cards {
         width: clamp(95%, 3vh, 100%);
     }
+
     .card {
         height: 55vh;
     }
+
     .card-content {
         padding: 3.5rem 3rem 2rem 3rem;
     }
+
     .process-text {
         line-height: 1.3;
         margin-top: 0;
     }
+
     .img-wrapper {
         border-radius: 10px 10px 0 0;
+    }
+}
+
+@media (max-width: 414px) {
+    .hero-title-sub {
+        font-size: 1.2rem;
     }
 }

@@ -155,113 +155,208 @@ mainSlider.init();
 
 
 var swiper = new Swiper(".mySwiper-about", {
-    slidesPerView: 2.5,
+    slidesPerView: 1.5,
     spaceBetween: 45,
-    // loop: true,
-    // mousewheel: true,
     keyboard: {
         enabled: true,
     },
-    // pagination: {
-    //     el: ".swiper-pagination",
-    //     clickable: true,
-    // },
+    breakpoints: {
+        768: {
+            slidesPerView: 2.5,
+        }
+    }
 });
 
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+//     // 1. Smoother 설정 (이미 다른 곳에서 선언되었다면 이 부분은 무시됨)
+//     const smoother = ScrollSmoother.get() || ScrollSmoother.create({
+//         wrapper: "#smooth-wrapper",
+//         content: "#smooth-content",
+//         smooth: 1.2,
+//     });
+
+//     // 2. 범위를 .process-container 내부로 한정하여 다른 페이지 요소 간섭 차단
+//     const container = document.querySelector(".process-container");
+//     if (!container) return; // 섹션이 없는 페이지에서는 실행 안 함
+
+//     const cards = container.querySelectorAll(".card");
+
+//     // 초기 상태 강제 세팅 (JS가 실행되기 전 튀어나오는 현상 방지)
+//     gsap.set(cards, {
+//         position: "relative",
+//         top: 0,
+//         zIndex: (i) => i + 1
+//     });
+
+//     cards.forEach((card, i) => {
+//         const img = card.querySelector("img");
+//         const textEls = card.querySelectorAll(".process-title, .process-text");
+
+//         // 초기 리빌 상태 세팅
+//         gsap.set(img, { clipPath: "inset(0% 100% 0% 0%)", autoAlpha: 0 });
+//         gsap.set(textEls, { y: 30, autoAlpha: 0 });
+
+//         // [핵심] 카드 스택 애니메이션
+//         gsap.to(card, {
+//             scale: 0.8 + 0.2 * (i / (cards.length - 1 || 1)),
+//             scrollTrigger: {
+//                 trigger: card,
+//                 // 'top top'이 아닌 부모 컨테이너가 화면에 들어온 이후부터 계산
+//                 start: () => `top ${15 + (i * 40)}px`,
+//                 endTrigger: container,
+//                 end: "bottom bottom",
+//                 pin: true,
+//                 pinSpacing: false,
+//                 scrub: true,
+//                 // 페이지 전체 높이에 영향을 주지 않도록 설정
+//                 invalidateOnRefresh: true,
+//                 anticipatePin: 1,
+//                 refreshPriority: -1
+//             },
+//         });
+
+//         // 리빌 애니메이션
+//         ScrollTrigger.create({
+//             trigger: card,
+//             start: "top 80%",
+//             once: true,
+//             onEnter: () => {
+//                 const tl = gsap.timeline();
+//                 tl.to(img, {
+//                     clipPath: "inset(0% 0% 0% 0%)",
+//                     autoAlpha: 1,
+//                     duration: 1.2,
+//                     ease: "power2.inOut",
+//                 })
+//                     .to(textEls, {
+//                         y: 0,
+//                         autoAlpha: 1,
+//                         duration: 0.6,
+//                         stagger: 0.2,
+//                         ease: "power3.out",
+//                         force3D: true,
+//                     }, "-=1.0");
+//             }
+//         });
+
+//         /* ==========================================
+//        메인 카피 타이핑 트리거 (추가된 부분)
+//     ========================================== */
+//         const copySection = document.querySelector('.main-copy-wrap');
+//         const copyBox = document.querySelector('.main-copy-box');
+
+//         if (copySection && copyBox) {
+//             ScrollTrigger.create({
+//                 trigger: copySection,
+//                 start: "top 75%",         // 화면 75% 지점에 도달하면 시작
+//                 markers: true,            // [디버깅] 트리거 지점을 화면에 표시 (확인 후 삭제)
+//                 onEnter: () => {
+//                     console.log("Typing Start!"); // 실행 여부 콘솔 확인
+//                     copyBox.classList.add('is-active');
+//                 },
+//                 once: true
+//             });
+//         }
+//     });
+
+//     // top button
+//     const topBtn = document.querySelector('.top-button');
+
+//     if (topBtn) {
+//         topBtn.addEventListener('click', (e) => {
+//             e.preventDefault(); // HTML 기본 앵커 이동 막기
+
+//             // smoother 인스턴스를 사용해 0(최상단) 위치로 부드럽게 이동
+//             // 0 대신 특정 요소의 ID(예: "#header")를 넣어도 됩니다.
+//             smoother.scrollTo(0, true);
+//         });
+//     }
+
+//     // [중요] 모든 요소가 배치된 후 딱 한 번만 좌표 갱신
+//     ScrollTrigger.refresh();
+
+// });
 
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-    // 1. Smoother 설정 (이미 다른 곳에서 선언되었다면 이 부분은 무시됨)
+    // 1. ScrollSmoother 설정 (공통)
     const smoother = ScrollSmoother.get() || ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
         content: "#smooth-content",
         smooth: 1.2,
     });
 
-    // 2. 범위를 .process-container 내부로 한정하여 다른 페이지 요소 간섭 차단
+    // 2. 프로세스 카드 섹션 로직 (존재할 때만 실행)
     const container = document.querySelector(".process-container");
-    if (!container) return; // 섹션이 없는 페이지에서는 실행 안 함
+    if (container) {
+        const cards = container.querySelectorAll(".card");
+        gsap.set(cards, { position: "relative", top: 0, zIndex: (i) => i + 1 });
 
-    const cards = container.querySelectorAll(".card");
+        cards.forEach((card, i) => {
+            const img = card.querySelector("img");
+            const textEls = card.querySelectorAll(".process-title, .process-text");
 
-    // 초기 상태 강제 세팅 (JS가 실행되기 전 튀어나오는 현상 방지)
-    gsap.set(cards, {
-        position: "relative",
-        top: 0,
-        zIndex: (i) => i + 1
-    });
+            gsap.set(img, { clipPath: "inset(0% 100% 0% 0%)", autoAlpha: 0 });
+            gsap.set(textEls, { y: 30, autoAlpha: 0 });
 
-    cards.forEach((card, i) => {
-        const img = card.querySelector("img");
-        const textEls = card.querySelectorAll(".process-title, .process-text");
+            gsap.to(card, {
+                scale: 0.8 + 0.2 * (i / (cards.length - 1 || 1)),
+                scrollTrigger: {
+                    trigger: card,
+                    start: () => `top ${15 + (i * 40)}px`,
+                    endTrigger: container,
+                    end: "bottom bottom",
+                    pin: true,
+                    pinSpacing: false,
+                    scrub: true,
+                    invalidateOnRefresh: true,
+                    refreshPriority: -1
+                },
+            });
 
-        // 초기 리빌 상태 세팅
-        gsap.set(img, { clipPath: "inset(0% 100% 0% 0%)", autoAlpha: 0 });
-        gsap.set(textEls, { y: 30, autoAlpha: 0 });
-
-        // [핵심] 카드 스택 애니메이션
-        gsap.to(card, {
-            scale: 0.8 + 0.2 * (i / (cards.length - 1 || 1)),
-            scrollTrigger: {
+            ScrollTrigger.create({
                 trigger: card,
-                // 'top top'이 아닌 부모 컨테이너가 화면에 들어온 이후부터 계산
-                start: () => `top ${15 + (i * 40)}px`,
-                endTrigger: container,
-                end: "bottom bottom",
-                pin: true,
-                pinSpacing: false,
-                scrub: true,
-                // 페이지 전체 높이에 영향을 주지 않도록 설정
-                invalidateOnRefresh: true,
-                anticipatePin: 1,
-                refreshPriority: -1
-            },
+                start: "top 80%",
+                once: true,
+                onEnter: () => {
+                    const tl = gsap.timeline();
+                    tl.to(img, { clipPath: "inset(0% 0% 0% 0%)", autoAlpha: 1, duration: 1.2, ease: "power2.inOut" })
+                        .to(textEls, { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.2, ease: "power3.out" }, "-=1.0");
+                }
+            });
         });
+    }
 
-        // 리빌 애니메이션
+    // 3. 메인 카피 타이핑 트리거 (독립적으로 실행)
+    const copySection = document.querySelector('.main-copy-wrap');
+    const copyBox = document.querySelector('.main-copy-box');
+
+    if (copySection && copyBox) {
         ScrollTrigger.create({
-            trigger: card,
-            start: "top 80%",
-            once: true,
+            trigger: copySection,
+            start: "top 75%",
             onEnter: () => {
-                const tl = gsap.timeline();
-                tl.to(img, {
-                    clipPath: "inset(0% 0% 0% 0%)",
-                    autoAlpha: 1,
-                    duration: 1.2,
-                    ease: "power2.inOut",
-                })
-                    .to(textEls, {
-                        y: 0,
-                        autoAlpha: 1,
-                        duration: 0.6,
-                        stagger: 0.2,
-                        ease: "power3.out",
-                        force3D: true,
-                    }, "-=1.0");
-            }
+                copyBox.classList.add('is-active');
+            },
+            once: true
         });
-    });
+    }
 
-    // [중요] 모든 요소가 배치된 후 딱 한 번만 좌표 갱신
-    ScrollTrigger.refresh();
-
-
-    // top button
+    // 4. TOP 버튼 로직
     const topBtn = document.querySelector('.top-button');
-
     if (topBtn) {
         topBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // HTML 기본 앵커 이동 막기
-
-            // smoother 인스턴스를 사용해 0(최상단) 위치로 부드럽게 이동
-            // 0 대신 특정 요소의 ID(예: "#header")를 넣어도 됩니다.
+            e.preventDefault();
             smoother.scrollTo(0, true);
         });
     }
 
-
+    // 최종 갱신
+    ScrollTrigger.refresh();
 });
 
 
@@ -278,10 +373,11 @@ $(function () {
 });
 
 
-$('.top-button').on('mouseover', function() {
+$('.top-button').on('mouseover', function () {
     $('.top-hover').stop().fadeIn(300);
 });
-$('.top-button').on('mouseleave', function() {
+$('.top-button').on('mouseleave', function () {
     $('.top-button img').stop().fadeIn(300);
     $('.top-hover').stop().fadeOut(300);
 });
+

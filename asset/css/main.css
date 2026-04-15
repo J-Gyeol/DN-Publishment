@@ -12,23 +12,23 @@
 .hero {
     width: 100%;
     height: 100%;
-    padding-top: 5rem;
-    padding-bottom: 9.5rem;
+    padding-top: 4.2rem;
+    padding-bottom: 8rem;
     margin: 0 auto;
     position: relative;
 }
 
 .hero-wrap {
     width: 100%;
-    height: 53rem;
+    height: 49rem;
     border-radius: 1.875rem;
     overflow: hidden;
 }
 
 .hero-cont {
     position: absolute;
-    top: 22%;
-    left: 10%;
+    top: 21%;
+    left: 9%;
     z-index: 5;
 }
 
@@ -36,7 +36,7 @@
     font-family: 'MaruBuri';
     font-weight: 300;
     color: var(--secondary-color);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .hero-title-main span {
@@ -47,7 +47,7 @@
     font-family: "Noto Serif", serif;
     font-weight: 300;
     color: var(--secondary-color);
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 .hero-btn {
@@ -56,19 +56,19 @@
 
 .hero-btn button {
     display: flex;
-    gap: 1.25rem;
+    gap: 1rem;
     align-items: center;
     background-color: transparent;
     color: var(--secondary-color);
     border: 1px solid var(--secondary-color);
-    padding: 0.9rem 2.2rem 0.9rem 1.8rem;
+    padding: 0.8rem 1.9rem 0.8rem 1.5rem;
     border-radius: 0.3125rem;
-    margin-top: 4.375rem;
+    margin-top: 3.3rem;
     margin-right: 1.5rem;
 }
 
 .hero-btn p {
-    font-size: 1.35rem;
+    font-size: 1.15rem;
 }
 
 .hero-btn button img {
@@ -149,7 +149,7 @@
 }
 
 .swiper-control {
-    margin-top: 5rem;
+    margin-top: 4rem;
     display: flex;
     gap: 20px;
     align-items: center;
@@ -234,11 +234,11 @@
     width: 100%;
     height: auto;
     display: flex;
-    padding-top: 10rem;
-    gap: 5rem;
+    padding-top: 8rem;
+    gap: 4rem;
     align-items: center;
-    max-width: 1860px;
-    margin-right: 0;
+    max-width: 1800px;
+    margin: 0 auto;
 }
 
 .about-main-title {
@@ -263,12 +263,13 @@
 
 .about-cont {
     display: flex;
-    margin-top: 4.125rem;
-    gap: 12rem;
+    margin-top: 3.2rem;
+    gap: clamp(3.2rem, 7vw, 8.5rem);
     padding-right: 0;
-    margin-right: 0;
-    margin-bottom: 6rem;
-    max-width: 1860px;
+    margin-bottom: 5rem;
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .about-more-btn a {
@@ -337,7 +338,7 @@
 
 /* active logo section  */
 .m-flow-sec {
-    padding: 70px 0 70px;
+    padding: 56px 0;
     /* display: none; */
     background-image: linear-gradient(to top, transparent, #efefef);
 }
@@ -345,28 +346,26 @@
 .m-flow-sec .text-slide {
     display: flex;
     overflow: hidden;
+    width: max-content;
+    animation: marquee-track 80s linear infinite;
+    will-change: transform;
 }
 
 .m-flow-sec .text-slide h3 {
     font-family: "DM Serif Text", serif;
-    font-size: 10rem;
+    font-size: 8.8rem;
     font-weight: 400;
     white-space: nowrap;
+    flex: 0 0 auto;
+    min-width: max-content;
+    padding-right: 1rem;
     text-shadow: -2px 0px 3px #8A8C5D, 0px 2px 3px #8A8C5D, 2px 0px 3px #8A8C5D, 0px -1px 3px #8A8C5D;
 }
 
 .m-flow-sec .text-slide h3 span {
     font-family: "Noto Serif", serif;
-    font-size: 3.75rem;
+    font-size: 3.2rem;
     font-weight: 400;
-}
-
-.m-flow-sec .text-slide h3.origin {
-    animation: 120s linear 0s infinite normal forwards running origin_left;
-}
-
-.m-flow-sec .text-slide h3.clone {
-    animation: 120s linear 0s infinite normal none running clone_left;
 }
 
 section.m-flow-sec div .text-slide h3,
@@ -374,31 +373,13 @@ section.m-flow-sec div .text-slide h3 span {
     color: #f7f7f7;
 }
 
-@keyframes origin_left {
-    0% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(-100%);
-    }
-
-    50.01% {
-        transform: translateX(100%)
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
-
-@keyframes clone_left {
+@keyframes marquee-track {
     0% {
         transform: translateX(0);
     }
 
     100% {
-        transform: translateX(-200%)
+        transform: translateX(-50%);
     }
 }
 
@@ -418,7 +399,7 @@ section.m-flow-sec div .text-slide h3 span {
 .process-container {
     width: 100%;
     min-height: 100vh;
-    padding: 4.375rem 1.25rem 6rem;
+    padding: 3.8rem 1.25rem 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -453,14 +434,14 @@ section.m-flow-sec div .text-slide h3 span {
 .card-content {
     display: flex;
     flex-direction: column;
-    padding: 6rem 4rem;
+    padding: 5rem 3.4rem;
 }
 
 .process-title {
     font-family: "Noto Serif", serif;
     display: flex;
     justify-content: space-between;
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 0.8rem;
 }
@@ -468,7 +449,7 @@ section.m-flow-sec div .text-slide h3 span {
 .process-text .sub {
     font-family: "Noto Serif", serif;
     width: 100%;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 2.3rem;
 }
@@ -476,7 +457,7 @@ section.m-flow-sec div .text-slide h3 span {
 .process-text .desc {
     line-height: 1.6;
     width: 100%;
-    font-size: 1.3rem;
+    font-size: 1.12rem;
 }
 
 .img-wrapper {
@@ -503,7 +484,7 @@ section.m-flow-sec div .text-slide h3 span {
 /* portfolio sec  */
 .port-wrap {
     width: 100%;
-    padding: 7.5rem 0;
+    padding: 6.2rem 0;
 }
 
 .port-slide {
@@ -576,7 +557,7 @@ section.m-flow-sec div .text-slide h3 span {
 
 .port-01 .port-text .subtitle,
 .port-02 .port-text .subtitle {
-    font-size: 2.3rem;
+    font-size: 2rem;
     margin-bottom: 1.25rem;
 }
 
@@ -606,8 +587,8 @@ section.m-flow-sec div .text-slide h3 span {
 }
 
 .port-slide img {
-    width: 25rem;
-    height: 25rem;
+    width: 22.5rem;
+    height: 22.5rem;
     object-fit: cover;
 }
 
@@ -645,7 +626,7 @@ section.m-flow-sec div .text-slide h3 span {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 0 7.5rem;
+    padding: 0 0 6.2rem;
 }
 
 .main-copy-box {
@@ -750,8 +731,8 @@ section.m-flow-sec div .text-slide h3 span {
 .contact-container {
     display: flex;
     gap: 1.875rem;
-    height: 58.125rem;
-    padding-bottom: 4.375rem;
+    height: 54rem;
+    padding-bottom: 3.5rem;
 }
 
 .contact-logo {
@@ -805,7 +786,7 @@ section.m-flow-sec div .text-slide h3 span {
     background-color: var(--secondary-color);
     border-radius: 1.875rem;
     height: calc(100% - 7.5rem);
-    padding: 3.375rem 3.375rem 2.125rem 3.375rem;
+    padding: 2.8rem 2.8rem 1.8rem 2.8rem;
 }
 
 .contact-box p,
@@ -888,7 +869,7 @@ textarea::placeholder {
 .send-txt {
     font-family: "DM Serif Text", serif;
     color: var(--secondary-color);
-    font-size: 2.1875rem;
+    font-size: 1.9rem;
     text-transform: uppercase;
     line-height: 130%;
     letter-spacing: -1px;

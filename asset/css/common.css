@@ -10,6 +10,10 @@
     /* --swiper-wrapper-transition-timing-function: ease-in-out !important; */
 }
 
+html {
+    font-size: 15px;
+}
+
 
 
 
@@ -17,7 +21,7 @@
 /* common css */
 .en-title {
     font-family: "DM Serif Text", serif;
-    font-size: 6.25rem;
+    font-size: 5.4rem;
     font-weight: 400;
     color: var(--text-color);
     line-height: 130%;
@@ -26,7 +30,7 @@
 
 .title {
     font-family: 'MaruBuri';
-    font-size: 3.6rem;
+    font-size: 3.1rem;
     font-weight: 600;
     color: var(--text-color);
     line-height: 130%;
@@ -35,7 +39,7 @@
 
 .subtitle {
     font-family: "Noto Serif", serif;
-    font-size: 1.6rem;
+    font-size: 1.42rem;
     font-weight: 400;
     color: var(--text-color);
     line-height: 130%;
@@ -44,7 +48,7 @@
 
 .desc {
     font-family: 'Pretendard';
-    font-size: 1.5625rem;
+    font-size: 1.3rem;
     font-weight: 400;
     color: var(--text-color);
     line-height: 130%;
@@ -132,27 +136,27 @@
 }
 
 .header .container {
-    height: 7.5rem;
+    height: 6.8rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .header img {
-    width: 3.75rem;
-    height: 3.75rem;
+    width: 3.3rem;
+    height: 3.3rem;
 }
 
 .menu-wrap,
 .menu-list,
 .menu-list-btn {
     display: flex;
-    gap: 3.25rem;
+    gap: 2.7rem;
     align-items: center;
 }
 
 .menu-list li a {
-    font-size: 1.15rem;
+    font-size: 1rem;
     letter-spacing: -1px;
     font-family: "Krona One", sans-serif;
     text-transform: uppercase;
@@ -163,8 +167,8 @@
 .menu-list-btn .menu-contact {
     position: relative;
     display: block;
-    width: 10.6rem;
-    height: 2.7rem;
+    width: 9.8rem;
+    height: 2.5rem;
     background-color: var(--primary-color);
     border-radius: 1.875rem;
     padding: 0.6rem 1.5625rem;
@@ -175,7 +179,7 @@
     top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     letter-spacing: -1px;
     font-family: "Krona One", sans-serif;
     text-transform: uppercase;
@@ -183,8 +187,8 @@
 }
 
 .menu-list-btn li a img {
-    width: 3.125rem;
-    height: 3.125rem;
+    width: 2.8rem;
+    height: 2.8rem;
 }
 
 .menu-list li a:hover {
@@ -204,8 +208,8 @@
     width: 100%;
     background-color: var(--gray-color);
     color: var(--text-color);
-    padding-top: 6.25rem;
-    padding-bottom: 5.2rem;
+    padding-top: 5.4rem;
+    padding-bottom: 4.5rem;
 }
 
 .footer-tag-list {
@@ -261,7 +265,7 @@
 }
 
 .footer-right-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     height: 3.75rem;
     padding-top: 1.8rem;
     font-family: "DM Serif Text", serif;
@@ -304,25 +308,25 @@
 
 @media(max-width: 1280px) {
     html {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .en-title {
-        font-size: 5rem;
+        font-size: 4.4rem;
         line-height: 130%;
         letter-spacing: -1px;
     }
 
     .title {
-        font-size: 3.2rem;
+        font-size: 2.8rem;
     }
 
     .subtitle {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
     }
 
     .desc {
-        font-size: 1.4rem;
+        font-size: 1.24rem;
     }
 
     .container {
@@ -340,25 +344,25 @@
 
 @media(max-width: 1024px) {
     html {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .en-title {
-        font-size: 4rem;
+        font-size: 3.7rem;
         line-height: 130%;
         letter-spacing: -1px;
     }
 
     .title {
-        font-size: 3rem;
+        font-size: 2.6rem;
     }
 
     .subtitle {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .desc {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .container {
@@ -393,25 +397,25 @@
 
 @media (max-width: 768px) {
     html {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     .en-title {
-        font-size: 4rem;
+        font-size: 3.5rem;
         line-height: 130%;
         letter-spacing: -1px;
     }
 
     .title {
-        font-size: 2.4rem;
+        font-size: 2.2rem;
     }
 
     .subtitle {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
 
     .desc {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .container {
@@ -469,25 +473,25 @@
 
 @media (max-width: 540px) {
     html {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .en-title {
-        font-size: 4rem;
+        font-size: 3.2rem;
         line-height: 130%;
         letter-spacing: -1px;
     }
 
     .title {
-        font-size: 2.4rem;
+        font-size: 2rem;
     }
 
     .subtitle {
-        font-size: 1.3rem;
+        font-size: 1.15rem;
     }
 
     .desc {
-        font-size: 1.2rem;
+        font-size: 1.05rem;
     }
 
     .container {

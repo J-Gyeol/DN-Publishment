@@ -895,6 +895,58 @@ textarea::placeholder {
 }
 
 
+.modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    padding: 40px;
+    background-color: var(--white-color);
+    border-radius: 10px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.modal-content p {
+    width: 80%;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: -1px;
+    color: var(--black-color);
+}
+.modal-content p span {
+    font-weight: 600;
+}
+.close-btn {
+    text-align: right;
+}
+.close-btn button {
+    border: none;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    padding: 6px 15px;
+    border-radius: 5px;
+}
+.close-btn button:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    transition: all 0.2s ease-in-out;
+}
+
+
 /* 1680px 1280px 1024px 768px 540px 414px */
 
 @media(max-width: 1680px) {

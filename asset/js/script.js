@@ -386,3 +386,7 @@ $('.top-button').on('mouseleave', function () {
     $('.top-hover').stop().fadeOut(300);
 });
 
+
+$('.close-btn').on('click', function () {
+    $('.modal').hide();
+});

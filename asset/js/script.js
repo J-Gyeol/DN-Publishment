@@ -283,11 +283,16 @@ var swiper = new Swiper(".mySwiper-about", {
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
+    // 터치 기기: transform 기반 smooth 스크롤이 iOS 등에서 ScrollTrigger pin과 충돌 → 네이티브 스크롤 사용
+    const useSmoothScroll = !ScrollTrigger.isTouch;
+
     // 1. ScrollSmoother 설정 (공통)
     const smoother = ScrollSmoother.get() || ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
         content: "#smooth-content",
-        smooth: 1.2,
+        smooth: useSmoothScroll ? 1.2 : 0,
     });
 
     // 2. 프로세스 카드 섹션 로직 (존재할 때만 실행)

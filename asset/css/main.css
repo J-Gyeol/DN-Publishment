@@ -341,6 +341,15 @@
     padding: 56px 0;
     /* display: none; */
     background-image: linear-gradient(to top, transparent, #efefef);
+    /* marquee(.text-slide)가 width:max-content라 뷰포트 밖으로 퍼지지 않도록 클립 */
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+.m-flow-sec > div {
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 .m-flow-sec .text-slide {

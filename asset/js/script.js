@@ -283,23 +283,18 @@ var swiper = new Swiper(".mySwiper-about", {
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-    ScrollTrigger.config({ ignoreMobileResize: true });
-
-    // 터치 기기: transform 기반 smooth 스크롤이 iOS 등에서 ScrollTrigger pin과 충돌 → 네이티브 스크롤 사용
-    const useSmoothScroll = !ScrollTrigger.isTouch;
-
-    // 1. ScrollSmoother 설정 (공통)
+    // 전역 스크롤은 기존 GSAP 스무더 유지
     const smoother = ScrollSmoother.get() || ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
         content: "#smooth-content",
-        smooth: useSmoothScroll ? 1.2 : 0,
+        smooth: 1.2,
     });
 
     // 2. 프로세스 카드 섹션 로직 (존재할 때만 실행)
     const container = document.querySelector(".process-container");
     if (container) {
         const cards = container.querySelectorAll(".card");
-        gsap.set(cards, { position: "relative", top: 0, zIndex: (i) => i + 1 });
+        gsap.set(cards, { zIndex: (i) => i + 1 });
 
         cards.forEach((card, i) => {
             const img = card.querySelector("img");
@@ -307,6 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             gsap.set(img, { clipPath: "inset(0% 100% 0% 0%)", autoAlpha: 0 });
             gsap.set(textEls, { y: 30, autoAlpha: 0 });
+            gsap.set(card, { position: "relative", top: 0, zIndex: i + 1 });
 
             gsap.to(card, {
                 scale: 0.8 + 0.2 * (i / (cards.length - 1 || 1)),
@@ -319,13 +315,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     pinSpacing: false,
                     scrub: true,
                     invalidateOnRefresh: true,
-                    refreshPriority: -1
                 },
             });
 
             ScrollTrigger.create({
                 trigger: card,
-                start: "top 80%",
+                start: `top ${20 + (i * 40)}px`,
                 once: true,
                 onEnter: () => {
                     const tl = gsap.timeline();

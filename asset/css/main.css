@@ -420,6 +420,7 @@ section.m-flow-sec div .text-slide h3 span {
     flex-direction: column;
     align-items: center;
     width: 70%;
+    position: relative;
 }
 
 .card {

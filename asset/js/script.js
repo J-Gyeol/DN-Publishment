@@ -168,195 +168,258 @@ var swiper = new Swiper(".mySwiper-about", {
 });
 
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+function createPageScroller() {
+    const pageContainer = document.querySelector('#smooth-content');
+    if (!pageContainer || typeof LocomotiveScroll === 'undefined') {
+        return null;
+    }
 
-//     // 1. Smoother 설정 (이미 다른 곳에서 선언되었다면 이 부분은 무시됨)
-//     const smoother = ScrollSmoother.get() || ScrollSmoother.create({
-//         wrapper: "#smooth-wrapper",
-//         content: "#smooth-content",
-//         smooth: 1.2,
-//     });
+    return new LocomotiveScroll({
+        el: pageContainer,
+        smooth: false,
+        tablet: { smooth: false },
+        smartphone: { smooth: false },
+        resetNativeScroll: false,
+    });
+}
 
-//     // 2. 범위를 .process-container 내부로 한정하여 다른 페이지 요소 간섭 차단
-//     const container = document.querySelector(".process-container");
-//     if (!container) return; // 섹션이 없는 페이지에서는 실행 안 함
+function getPageScrollY(pageScroller) {
+    // 현재 페이지는 Locomotive를 smooth:false로 사용하므로 실제 진행 값은 window.scrollY가 가장 정확하다.
+    return window.scrollY;
+}
 
-//     const cards = container.querySelectorAll(".card");
+function scrollPageTo(pageScroller, targetY) {
+    if (pageScroller && typeof pageScroller.scrollTo === 'function') {
+        pageScroller.scrollTo(targetY, { duration: 700, disableLerp: false });
+        return;
+    }
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+}
 
-//     // 초기 상태 강제 세팅 (JS가 실행되기 전 튀어나오는 현상 방지)
-//     gsap.set(cards, {
-//         position: "relative",
-//         top: 0,
-//         zIndex: (i) => i + 1
-//     });
+function initSpineModule(pageScroller) {
+    const moduleRoot = document.querySelector('.spine-module');
+    const moduleShell = document.querySelector('.spine-module-shell');
+    if (!moduleRoot || !moduleShell) return;
 
-//     cards.forEach((card, i) => {
-//         const img = card.querySelector("img");
-//         const textEls = card.querySelectorAll(".process-title, .process-text");
+    const spines = Array.from(moduleRoot.querySelectorAll('.spine[data-spine-section]'));
+    const sections = Array.from(moduleRoot.querySelectorAll('section[data-spine-section]'));
+    const mqMobile = window.matchMedia('(max-width: 1024px)');
+    const scrollContainer = moduleRoot.querySelector('[data-scroll-container]');
+    const scrollTrack = scrollContainer ? scrollContainer.querySelector('.wrap') : null;
+    let syncTicking = false;
+    const SYNC_EPSILON = 0.75;
+    const TAIL_HOLD_RATIO = 0.5;
+    let stageStartY = 0;
+    let stageRange = 1;
 
-//         // 초기 리빌 상태 세팅
-//         gsap.set(img, { clipPath: "inset(0% 100% 0% 0%)", autoAlpha: 0 });
-//         gsap.set(textEls, { y: 30, autoAlpha: 0 });
+    function getVerticalScroll() {
+        return getPageScrollY(pageScroller);
+    }
 
-//         // [핵심] 카드 스택 애니메이션
-//         gsap.to(card, {
-//             scale: 0.8 + 0.2 * (i / (cards.length - 1 || 1)),
-//             scrollTrigger: {
-//                 trigger: card,
-//                 // 'top top'이 아닌 부모 컨테이너가 화면에 들어온 이후부터 계산
-//                 start: () => `top ${15 + (i * 40)}px`,
-//                 endTrigger: container,
-//                 end: "bottom bottom",
-//                 pin: true,
-//                 pinSpacing: false,
-//                 scrub: true,
-//                 // 페이지 전체 높이에 영향을 주지 않도록 설정
-//                 invalidateOnRefresh: true,
-//                 anticipatePin: 1,
-//                 refreshPriority: -1
-//             },
-//         });
+    function getMaxX() {
+        if (!scrollContainer || !scrollTrack) return 0;
+        return Math.max(0, scrollTrack.scrollWidth - scrollContainer.clientWidth);
+    }
 
-//         // 리빌 애니메이션
-//         ScrollTrigger.create({
-//             trigger: card,
-//             start: "top 80%",
-//             once: true,
-//             onEnter: () => {
-//                 const tl = gsap.timeline();
-//                 tl.to(img, {
-//                     clipPath: "inset(0% 0% 0% 0%)",
-//                     autoAlpha: 1,
-//                     duration: 1.2,
-//                     ease: "power2.inOut",
-//                 })
-//                     .to(textEls, {
-//                         y: 0,
-//                         autoAlpha: 1,
-//                         duration: 0.6,
-//                         stagger: 0.2,
-//                         ease: "power3.out",
-//                         force3D: true,
-//                     }, "-=1.0");
-//             }
-//         });
+    function getEffectiveMaxX() {
+        if (!sections.length || !scrollContainer) return getMaxX();
+        const lastSection = sections[sections.length - 1];
+        const maxX = getMaxX();
+        const lastStartX = Math.max(0, lastSection.offsetLeft);
+        return Math.min(maxX, lastStartX);
+    }
 
-//         /* ==========================================
-//        메인 카피 타이핑 트리거 (추가된 부분)
-//     ========================================== */
-//         const copySection = document.querySelector('.main-copy-wrap');
-//         const copyBox = document.querySelector('.main-copy-box');
+    function getStageStartY() {
+        if (!moduleShell) return 0;
+        return getVerticalScroll() + moduleShell.getBoundingClientRect().top;
+    }
 
-//         if (copySection && copyBox) {
-//             ScrollTrigger.create({
-//                 trigger: copySection,
-//                 start: "top 75%",         // 화면 75% 지점에 도달하면 시작
-//                 markers: true,            // [디버깅] 트리거 지점을 화면에 표시 (확인 후 삭제)
-//                 onEnter: () => {
-//                     console.log("Typing Start!"); // 실행 여부 콘솔 확인
-//                     copyBox.classList.add('is-active');
-//                 },
-//                 once: true
-//             });
-//         }
-//     });
+    function updateShellHeight() {
+        if (!moduleShell || !scrollContainer || mqMobile.matches) {
+            if (moduleShell) moduleShell.style.height = '';
+            return;
+        }
+        const maxX = getEffectiveMaxX();
+        const tailHoldY = window.innerHeight * TAIL_HOLD_RATIO;
+        moduleShell.style.height = `${window.innerHeight + maxX + tailHoldY}px`;
+        moduleRoot.style.position = 'sticky';
+        const rect = moduleShell.getBoundingClientRect();
+        stageStartY = getVerticalScroll() + rect.top;
+        stageRange = Math.max(1, moduleShell.offsetHeight - window.innerHeight);
+    }
 
-//     // top button
-//     const topBtn = document.querySelector('.top-button');
+    function bindSpineClick() {
+        spines.forEach((spine) => {
+            spine.onclick = () => {
+                const targetId = spine.getAttribute('data-href');
+                const targetEl = moduleRoot.querySelector(`#${targetId}`);
+                if (!targetEl || !scrollContainer) return;
 
-//     if (topBtn) {
-//         topBtn.addEventListener('click', (e) => {
-//             e.preventDefault(); // HTML 기본 앵커 이동 막기
+                if (mqMobile.matches) {
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    const startY = getStageStartY();
+                    const targetY = startY + targetEl.offsetLeft;
+                    scrollPageTo(pageScroller, targetY);
+                }
+            };
+        });
+    }
 
-//             // smoother 인스턴스를 사용해 0(최상단) 위치로 부드럽게 이동
-//             // 0 대신 특정 요소의 ID(예: "#header")를 넣어도 됩니다.
-//             smoother.scrollTo(0, true);
-//         });
-//     }
+    function updateDesktopSpines(scrollArgs) {
+        if (!moduleRoot || !scrollContainer || !scrollTrack) return;
+        const containerWidth = scrollContainer.clientWidth;
+        const currentX = scrollArgs && scrollArgs.scroll && typeof scrollArgs.scroll.x === 'number'
+            ? scrollArgs.scroll.x
+            : parseFloat(scrollContainer.dataset.currentX || '0');
 
-//     // [중요] 모든 요소가 배치된 후 딱 한 번만 좌표 갱신
-//     ScrollTrigger.refresh();
+        spines.forEach((spine) => {
+            const attr = Number(spine.getAttribute('data-spine-section'));
+            const section = moduleRoot.querySelector(`section[data-spine-section='${attr}']`);
+            if (!section) return;
 
-// });
+            const sectionLeft = section.offsetLeft - currentX;
+
+            if (sectionLeft <= spine.offsetWidth * attr) {
+                spine.classList.add('fixed');
+                spine.classList.remove('init');
+                spine.classList.remove('active');
+                spine.style.left = '';
+            } else if (sectionLeft >= containerWidth - spine.offsetWidth * (spines.length - attr)) {
+                spine.classList.add('init');
+                spine.classList.remove('active');
+                spine.classList.remove('fixed');
+                spine.style.left = '';
+            } else {
+                spine.classList.add('active');
+                spine.classList.remove('init');
+                spine.classList.remove('fixed');
+                spine.style.left = `${sectionLeft}px`;
+            }
+        });
+    }
+
+    function resetSpineStateForMobile() {
+        spines.forEach((spine) => {
+            spine.classList.remove('fixed', 'active');
+            spine.classList.add('init');
+            spine.style.left = '';
+        });
+    }
+
+    function syncDesktopHorizontalByPageScroll() {
+        if (mqMobile.matches || !moduleShell || !scrollTrack) return;
+        const raw = (getVerticalScroll() - stageStartY) / stageRange;
+        const progress = Math.min(1, Math.max(0, raw));
+        const maxX = getEffectiveMaxX();
+        const targetX = progress * maxX;
+        const currentX = parseFloat(scrollContainer.dataset.currentX || '0');
+
+        if (Math.abs(targetX - currentX) < SYNC_EPSILON) {
+            return;
+        }
+
+        scrollTrack.style.transform = `translate3d(${-targetX}px, 0, 0)`;
+        scrollContainer.dataset.currentX = String(targetX);
+        updateDesktopSpines({
+            scroll: { x: targetX }
+        });
+    }
+
+    function initResponsiveScroll() {
+        if (!scrollContainer || !moduleRoot || !moduleShell || !scrollTrack) {
+            return;
+        }
+
+        if (mqMobile.matches) {
+            moduleRoot.style.position = 'relative';
+            moduleShell.style.height = '';
+            scrollTrack.style.transform = '';
+            scrollContainer.dataset.currentX = '0';
+            resetSpineStateForMobile();
+            bindSpineClick();
+            return;
+        }
+
+        updateShellHeight();
+        scrollTrack.style.willChange = 'transform';
+        syncDesktopHorizontalByPageScroll();
+        bindSpineClick();
+    }
+
+    function syncByFrame() {
+        if (syncTicking) return;
+        syncTicking = true;
+        requestAnimationFrame(() => {
+            syncDesktopHorizontalByPageScroll();
+            syncTicking = false;
+        });
+    }
+
+    initResponsiveScroll();
+
+    function refresh() {
+        initResponsiveScroll();
+        syncByFrame();
+    }
+
+    window.addEventListener('resize', refresh);
+
+    return {
+        sync: syncByFrame,
+        refresh,
+    };
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    const pageScroller = createPageScroller();
+    const spineModule = initSpineModule(pageScroller);
 
-    // 전역 스크롤은 기존 GSAP 스무더 유지
-    const smoother = ScrollSmoother.get() || ScrollSmoother.create({
-        wrapper: "#smooth-wrapper",
-        content: "#smooth-content",
-        smooth: 1.2,
-    });
-
-    // 2. 프로세스 카드 섹션 로직 (존재할 때만 실행)
-    const container = document.querySelector(".process-container");
-    if (container) {
-        const cards = container.querySelectorAll(".card");
-        gsap.set(cards, { zIndex: (i) => i + 1 });
-
-        cards.forEach((card, i) => {
-            const img = card.querySelector("img");
-            const textEls = card.querySelectorAll(".process-title, .process-text");
-
-            gsap.set(img, { clipPath: "inset(0% 100% 0% 0%)", autoAlpha: 0 });
-            gsap.set(textEls, { y: 30, autoAlpha: 0 });
-            gsap.set(card, { position: "relative", top: 0, zIndex: i + 1 });
-
-            gsap.to(card, {
-                scale: 0.8 + 0.2 * (i / (cards.length - 1 || 1)),
-                scrollTrigger: {
-                    trigger: card,
-                    start: () => `top ${15 + (i * 40)}px`,
-                    endTrigger: container,
-                    end: "bottom bottom",
-                    pin: true,
-                    pinSpacing: false,
-                    scrub: true,
-                    invalidateOnRefresh: true,
-                },
-            });
-
-            ScrollTrigger.create({
-                trigger: card,
-                start: `top ${20 + (i * 40)}px`,
-                once: true,
-                onEnter: () => {
-                    const tl = gsap.timeline();
-                    tl.to(img, { clipPath: "inset(0% 0% 0% 0%)", autoAlpha: 1, duration: 1.2, ease: "power2.inOut" })
-                        .to(textEls, { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.2, ease: "power3.out" }, "-=1.0");
-                }
-            });
-        });
-    }
-
-    // 3. 메인 카피 타이핑 트리거 (독립적으로 실행)
     const copySection = document.querySelector('.main-copy-wrap');
     const copyBox = document.querySelector('.main-copy-box');
+    let copyTriggered = false;
 
-    if (copySection && copyBox) {
-        ScrollTrigger.create({
-            trigger: copySection,
-            start: "top 75%",
-            onEnter: () => {
-                copyBox.classList.add('is-active');
-            },
-            once: true
-        });
+    function syncCopyTrigger() {
+        if (copyTriggered || !copySection || !copyBox) return;
+        if (copySection.getBoundingClientRect().top <= window.innerHeight * 0.75) {
+            copyBox.classList.add('is-active');
+            copyTriggered = true;
+        }
     }
 
-    // 4. TOP 버튼 로직
+    function syncAll() {
+        spineModule?.sync();
+        syncCopyTrigger();
+    }
+
+    if (pageScroller) {
+        pageScroller.on('scroll', syncAll);
+        pageScroller.update();
+    } else {
+        window.addEventListener('scroll', syncAll, { passive: true });
+    }
+
+    window.addEventListener('load', () => {
+        pageScroller?.update();
+        spineModule?.refresh();
+        syncAll();
+    });
+
+    window.addEventListener('resize', () => {
+        pageScroller?.update();
+        spineModule?.refresh();
+        syncAll();
+    });
+
     const topBtn = document.querySelector('.top-button');
     if (topBtn) {
         topBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            smoother.scrollTo(0, true);
+            scrollPageTo(pageScroller, 0);
         });
     }
 
-    // 최종 갱신
-    ScrollTrigger.refresh();
+    syncAll();
 });
 
 

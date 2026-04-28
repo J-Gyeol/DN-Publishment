@@ -59,47 +59,16 @@ body {
     height: auto;
 }
 
-.symbol-line {
-    stroke: var(--primary-color);
-    stroke-width: 3.4;
-    fill: none;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.book-symbol #Type path {
+    fill: var(--primary-color);
 }
 
-.base-line {
-    stroke-width: 6;
-}
-
-.arch-line {
-    stroke-width: 5;
-    stroke-dasharray: 130;
-    stroke-dashoffset: 130;
-    animation: draw-arch 1s ease-out 0.2s forwards;
-}
-
-.symbol-reveal-rect {
-    animation: reveal-symbol 1.25s ease-out forwards;
-}
-
-@keyframes reveal-symbol {
-    from {
-        width: 0;
-    }
-
-    to {
-        width: 280px;
-    }
-}
-
-@keyframes draw-arch {
-    from {
-        stroke-dashoffset: 130;
-    }
-
-    to {
-        stroke-dashoffset: 0;
-    }
+.book-symbol #Type text {
+    fill: var(--primary-color);
+    font-family: "Krona One", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
 .about-content {
@@ -513,16 +482,4 @@ body {
         transition: none;
     }
 
-    .symbol-reveal-rect,
-    .arch-line {
-        animation: none;
-    }
-
-    .symbol-reveal-rect {
-        width: 280px;
-    }
-
-    .arch-line {
-        stroke-dashoffset: 0;
-    }
 }

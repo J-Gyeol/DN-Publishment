@@ -76,4 +76,45 @@ document.addEventListener("DOMContentLoaded", () => {
             topHover.style.display = "none";
         });
     }
+
+    // imoticon #Type 느낌의 스크롤 회전
+    const heroSymbol = document.querySelector(".about-hero-symbol");
+    const typeGroup = heroSymbol ? heroSymbol.querySelector("#Type") : null;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let ticking = false;
+
+    const updateTypeRotation = () => {
+        if (!heroSymbol || !typeGroup) return;
+        if (prefersReducedMotion) {
+            typeGroup.style.transform = "rotate(0deg)";
+            return;
+        }
+
+        const rect = heroSymbol.getBoundingClientRect();
+        const start = window.innerHeight * 0.9;
+        const end = window.innerHeight * 0.15;
+        const raw = (start - rect.top) / Math.max(1, start - end);
+        const progress = Math.min(1, Math.max(0, raw));
+        const turns = 6;
+
+        typeGroup.style.transformBox = "fill-box";
+        typeGroup.style.transformOrigin = "50% 50%";
+        typeGroup.style.transform = `rotate(${progress * 360 * turns}deg)`;
+    };
+
+    const onScrollRotate = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+            updateTypeRotation();
+            ticking = false;
+        });
+    };
+
+    if (heroSymbol && typeGroup) {
+        updateTypeRotation();
+        window.addEventListener("scroll", onScrollRotate, { passive: true });
+        window.addEventListener("resize", updateTypeRotation);
+    }
+
 });

@@ -1,0 +1,295 @@
+/* Book spine process module (embedded on index; scoped under .spine-module) */
+
+.spine-module,
+.spine-module *,
+.spine-module :after,
+.spine-module :before {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+
+.spine-module-shell {
+    position: relative;
+    width: 100%;
+}
+
+.spine-module {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: #f8f1e6;
+    font-family: sans-serif;
+    line-height: 1.31rem;
+    color: #383737;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.spine-module .spine-main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.spine-module .spine-main::-webkit-scrollbar {
+    display: none;
+}
+
+.spine-module section {
+    width: 120vw;
+}
+
+.spine-module section:last-child {
+    width: 100vw;
+}
+
+.spine-module .wrap {
+    display: flex;
+    height: 100%;
+}
+
+.spine-module .section {
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.spine-module .spines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.spine-module .has-scroll-scrolling .spine,
+.spine-module .spines {
+    pointer-events: none;
+}
+
+.spine-module .spine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4.13rem;
+    height: 100%;
+    z-index: 100;
+    padding: 2rem 1.25rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #f8f1e6;
+    pointer-events: auto;
+    cursor: pointer;
+    border-left: 0.06rem solid #837c6d;
+    font-weight: 500;
+}
+
+.spine-module .spine[data-spine-section="0"] {
+    border-right: 0.06rem solid #837c6d;
+}
+
+.spine-module .spine[data-spine-section="1"].init {
+    left: calc(100% - 20.65rem);
+}
+
+.spine-module .spine[data-spine-section="1"].fixed {
+    left: 4.13rem;
+    border-left: none;
+    border-right: 0.06rem solid #837c6d;
+}
+
+.spine-module .spine[data-spine-section="2"].init {
+    left: calc(100% - 16.52rem);
+}
+
+.spine-module .spine[data-spine-section="2"].fixed {
+    left: 8.26rem;
+    border-left: none;
+    border-right: 0.06rem solid #837c6d;
+}
+
+.spine-module .spine[data-spine-section="3"].init {
+    left: calc(100% - 12.39rem);
+}
+
+.spine-module .spine[data-spine-section="3"].fixed {
+    left: 12.39rem;
+    border-left: none;
+    border-right: 0.06rem solid #837c6d;
+}
+
+.spine-module .spine[data-spine-section="4"].init {
+    left: calc(100% - 8.26rem);
+}
+
+.spine-module .spine[data-spine-section="4"].fixed {
+    left: 16.52rem;
+    border-left: none;
+    border-right: 0.06rem solid #837c6d;
+}
+
+.spine-module .spine[data-spine-section="5"].init {
+    left: calc(100% - 4.13rem);
+}
+
+.spine-module .spine[data-spine-section="5"].fixed {
+    left: 20.65rem;
+    border-left: none;
+    border-right: 0.06rem solid #837c6d;
+}
+
+.spine-module .spine__title {
+    position: relative;
+    white-space: nowrap;
+    transform: rotate(-90deg) translate(-50%);
+    text-align: right;
+}
+
+.spine-module .spine__number,
+.spine-module .spine__title {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    line-height: 1.06rem;
+    color: #837c6d;
+}
+
+.spine-module .section-inner {
+    width: 100%;
+    max-width: 84rem;
+    margin: 0 auto;
+    height: 100%;
+    padding: 0 0 0 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2%;
+}
+
+.spine-module .section-text {
+    width: 48%;
+}
+
+.spine-module .section-text h2 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.spine-module .section-text .lead {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    color: #5f594c;
+    font-weight: 600;
+}
+
+.spine-module .section-text p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #383737;
+}
+
+.spine-module .section-image {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.spine-module .section-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 1024px) {
+    .spine-module-shell {
+        height: auto !important;
+    }
+
+    .spine-module {
+        position: relative;
+        height: auto;
+        overflow: visible;
+    }
+
+    .spine-module .spine-main {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+    }
+
+    .spine-module .wrap {
+        height: auto;
+        flex-direction: column;
+    }
+
+    .spine-module section {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .spine-module .section {
+        height: auto;
+        min-height: auto;
+        align-items: stretch;
+        flex-shrink: 1;
+    }
+
+    .spine-module .section-inner {
+        width: 100%;
+        max-width: none;
+        min-height: auto;
+        height: auto;
+        padding: clamp(1.6rem, 7vw, 7rem) clamp(1rem, 6vw, 3rem) clamp(3rem, 8vw, 10rem);
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 4%;
+        border-bottom: 0.02rem solid #837c6d;
+    }
+
+    .spine-module .section-text,
+    .spine-module .section-image {
+        width: 100%;
+        height: auto;
+        flex: 0 0 auto;
+    }
+
+    .spine-module .section-text {
+        padding: 0.5rem;
+    }
+
+    .spine-module .section-image {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .spine-module .section-image img {
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+    }
+
+    .spine-module .spines {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .spine-module .section-text h2 {
+        font-size: 1.8rem;
+        margin-bottom: 0.75rem;
+    }
+}

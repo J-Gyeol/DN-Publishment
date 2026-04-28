@@ -397,11 +397,12 @@ section.m-flow-sec div .text-slide h3 span {
 
 #smooth-wrapper {
     width: 100%;
-    height: 100%;
-    overflow: hidden;
+    height: auto;
+    overflow: visible;
 }
 
 #smooth-content {
+    min-height: 100vh;
     will-change: transform;
 }
 
@@ -484,17 +485,10 @@ section.m-flow-sec div .text-slide h3 span {
     display: block;
 }
 
-.spacer {
-    background-color: var(--black-color);
-    width: 100%;
-    height: 6rem;
-}
-
-
 /* portfolio sec  */
 .port-wrap {
     width: 100%;
-    padding: 6.2rem 0;
+    padding: 12.2rem 0 6.2rem;
 }
 
 .port-slide {
@@ -1277,10 +1271,6 @@ textarea::placeholder {
 
     .contact-box {
         padding: 3rem 3rem 2rem 3rem;
-    }
-
-    .message {
-        height: 18rem;
     }
 
     .send-txt {

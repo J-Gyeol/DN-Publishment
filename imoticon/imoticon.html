@@ -129,9 +129,8 @@
             scroller: '.container',
             start: 'left bottom',
             end: '+=1000',
-            animation: TweenMax.to('#Type', { rotation: 360 * 6, transformOrigin: "50% 50%", duration: .25, ease: 'none', }),
-            scrub: .2,
-            // markers: true
+            animation: gsap.to('#Type', { rotation: 360 * 6, transformOrigin: '50% 50%', ease: 'none' }),
+            scrub: 0.2
         })
 
         ScrollTrigger.create({
@@ -139,16 +138,15 @@
             scroller: '.container',
             start: 'top+=0% 50%',
             end: 'bottom-=40% 50%',
-            animation: gsap.to('.image-mask', { height: 80 + 'vh', backgroundPosition: "+=0 1%" }), repeat: -1, onComplete: function () {
-                $("#bg").css({ backgroundPosition: "50% 90%" });
-            },
-            scrub: true,
-            // markers: true
+            animation: gsap.to('.image-mask', {
+                height: '80vh',
+                backgroundPosition: '+=0 1%',
+                ease: 'none'
+            }),
+            scrub: true
         })
 
-
         ScrollTrigger.addEventListener('refresh', () => scroller.update())
-
 
         ScrollTrigger.refresh()
     </script>

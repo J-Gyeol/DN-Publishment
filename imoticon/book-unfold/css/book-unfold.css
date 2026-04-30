@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Cormorant Garamond", serif;
+}
+
+.book-page {
+  position: relative;
+  --book-progress: 0;
+  --total-angle: 180deg;
+  --total-steps: 13;
+  --angle-step: calc(var(--total-angle) / var(--total-steps));
+  --base-floor-start-y: -5px;
+  --base-floor-end-y: -10px;
+  /* 닫힌 상태에서 팬 전체를 왼쪽 영역으로 옮김 → 펼치면 중앙(반원 중심)으로 이동 */
+  --fan-start-shift: min(28vw, 140px);
+  --fan-end-shift: 14px;
+  background: #dfdfdf;
+}
+
+.book-page__spacer {
+  min-height: 42vh;
+  flex-shrink: 0;
+}
+
+/* 스크롤 길이 (sticky 구간) */
+.book-scroll-track {
+  min-height: 320vh;
+  position: relative;
+}
+
+.book-sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-bottom: 10vh;
+}
+
+.book-section {
+  width: 100%;
+  padding: 0 1rem;
+  background: transparent;
+}
+
+.book-section__inner {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding-top: min(18vh, 160px);
+  text-align: left;
+}
+
+.book-section__label {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.book-unfold {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+/* 무대: 반원이 들어갈 너비. 피벗은 가로 중앙 하단 */
+.book-unfold__stage {
+  position: relative;
+  width: min(92vw, 440px);
+  height: clamp(200px, 38vh, 280px);
+  margin: 0 auto;
+}
+
+.book-pivot {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  transform: translateX(
+    calc(
+      var(--book-progress) * var(--fan-end-shift) -
+        (1 - var(--book-progress)) * var(--fan-start-shift)
+    )
+  );
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+/*
+  모든 막대: 같은 피벗(오른쪽 아래 꼭짓점 = 반원의 중심축에서 책등).
+  닫힘: translateY만으로 포개어 스택 → 회전축이 한 점에서 갈라지지 않음.
+  펼침: 같은 origin에서만 회전 → 가운데 빈 벌어짐 없음.
+*/
+.book-layer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform-origin: 100% 100%;
+  z-index: calc(2 + var(--idx));
+  will-change: transform;
+  --max-angle: calc(var(--idx) * var(--angle-step));
+  transform:
+    translateX(calc(var(--book-progress) * var(--pivot-offset, 0px)))
+    translateY(
+      calc(
+        (1 - var(--book-progress)) * var(--stack-shift) -
+          var(--book-progress) * var(--lift-offset, 0px)
+      )
+    )
+    rotate(calc(var(--book-progress) * var(--max-angle)));
+}
+
+.book-layer img {
+  display: block;
+  height: auto;
+  max-width: none;
+}
+
+.book-layer--cover-top img {
+  width: 180px;
+  height: auto;
+}
+
+.book-layer--base-floor {
+  right: 0;
+  bottom: calc(
+    var(--base-floor-start-y) * (1 - var(--book-progress)) +
+      var(--base-floor-end-y) * var(--book-progress)
+  );
+  transform: none;
+  z-index: 1;
+}
+
+.book-layer--base-floor img {
+  width: 180px;
+  height: auto;
+}
+
+/* 중앙 비움 + 바깥으로 갈수록 순차적으로 더 멀어지게 분리 */
+/* .book-layer[data-layer="1"] { --pivot-offset: 52px; } */
+.book-layer[data-layer="2"] { --pivot-offset: 2px; }
+.book-layer[data-layer="3"] { --pivot-offset: 6px; }
+.book-layer[data-layer="4"] { --pivot-offset: 10px; }
+.book-layer[data-layer="5"] { --pivot-offset: 16px; }
+.book-layer[data-layer="6"] { --pivot-offset: 22px; }
+.book-layer[data-layer="7"] { --pivot-offset: 30px; }
+.book-layer[data-layer="8"] { --pivot-offset: 38px; }
+.book-layer[data-layer="9"] { --pivot-offset: 46px; }
+.book-layer[data-layer="10"] { --pivot-offset: 52px; }
+.book-layer[data-layer="11"] { --pivot-offset: 56px; }
+.book-layer[data-layer="12"] { --pivot-offset: 59px; }
+.book-layer[data-layer="13"] { --pivot-offset: 60px; }
+
+/* 회전할수록 위로도 올라가게(중앙 아치 형성) */
+.book-layer[data-layer="1"] { --lift-offset: 3px; }
+.book-layer[data-layer="2"] { --lift-offset: 12px; }
+.book-layer[data-layer="3"] { --lift-offset: 19px; }
+.book-layer[data-layer="4"] { --lift-offset: 24px; }
+.book-layer[data-layer="5"] { --lift-offset: 28px; }
+.book-layer[data-layer="6"] { --lift-offset: 30px; }
+.book-layer[data-layer="7"] { --lift-offset: 31px; }
+.book-layer[data-layer="8"] { --lift-offset: 30.5px; }
+.book-layer[data-layer="9"] { --lift-offset: 27px; }
+.book-layer[data-layer="10"] { --lift-offset: 22px; }
+.book-layer[data-layer="11"] { --lift-offset: 16px; }
+.book-layer[data-layer="12"] { --lift-offset: 8px; }
+/* .book-layer[data-layer="13"] { --lift-offset: 24px; } */
+

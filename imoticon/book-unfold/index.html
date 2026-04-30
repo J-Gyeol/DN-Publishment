@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book unfold scroll</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+    <link rel="stylesheet" href="css/book-unfold.css">
+</head>
+
+<body>
+    <div data-scroll-container class="book-page">
+        <div class="book-page__spacer" aria-hidden="true"></div>
+
+        <!-- 스크롤 거리: sticky가 이 구간 동안 뷰에 고정 -->
+        <div class="book-scroll-track" data-book-scroll-track>
+            <div class="book-sticky">
+                <section class="book-section" data-scroll-section>
+                    <div class="book-section__inner">
+                        <p class="book-section__label" data-scroll data-scroll-speed="0.5">Scroll</p>
+                        <div class="book-unfold" data-book-unfold>
+                            <div class="book-unfold__stage">
+                                <!-- 단일 피벗: 모든 막대의 transform-origin이 같은 점(팬의 꼭짓점) -->
+                                <div class="book-pivot">
+                                    <div class="book-layer book-layer--base-floor" data-layer="0" style="--idx: 0; --stack-shift: 0px"><img src="svg/Rectangle-819.svg" alt="" width="180" height="10"></div>
+                                    <div class="book-layer" data-layer="1" style="--idx: 1; --stack-shift: -9px"><img src="svg/cover-bottom.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="2" style="--idx: 2; --stack-shift: -18px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="3" style="--idx: 3; --stack-shift: -27px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="4" style="--idx: 4; --stack-shift: -36px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="5" style="--idx: 5; --stack-shift: -45px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="6" style="--idx: 6; --stack-shift: -54px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="7" style="--idx: 7; --stack-shift: -63px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="8" style="--idx: 8; --stack-shift: -72px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="9" style="--idx: 9; --stack-shift: -81px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="10" style="--idx: 10; --stack-shift: -90px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="11" style="--idx: 11; --stack-shift: -99px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer" data-layer="12" style="--idx: 12; --stack-shift: -108px"><img src="svg/page.svg" alt="" width="150" height="5"></div>
+                                    <div class="book-layer book-layer--cover-top" data-layer="13" style="--idx: 13; --stack-shift: -117px"><img src="svg/Rectangle-819.svg" alt="" width="180" height="10"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+    <script src="js/book-unfold.js"></script>
+</body>
+
+</html>

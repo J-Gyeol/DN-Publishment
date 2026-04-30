@@ -169,7 +169,7 @@ var swiper = new Swiper(".mySwiper-about", {
 
 
 function createPageScroller() {
-    const pageContainer = document.querySelector('#smooth-content');
+    const pageContainer = document.querySelector('#smooth-content[data-scroll-container]');
     if (!pageContainer || typeof LocomotiveScroll === 'undefined') {
         return null;
     }
@@ -184,7 +184,7 @@ function createPageScroller() {
 }
 
 function getPageScrollY(pageScroller) {
-    // 현재 페이지는 Locomotive를 smooth:false로 사용하므로 실제 진행 값은 window.scrollY가 가장 정확하다.
+    // smooth:false에서는 네이티브 스크롤 값을 기준으로 계산하는 편이 안정적이다.
     return window.scrollY;
 }
 
@@ -204,7 +204,7 @@ function initSpineModule(pageScroller) {
     const spines = Array.from(moduleRoot.querySelectorAll('.spine[data-spine-section]'));
     const sections = Array.from(moduleRoot.querySelectorAll('section[data-spine-section]'));
     const mqMobile = window.matchMedia('(max-width: 1024px)');
-    const scrollContainer = moduleRoot.querySelector('[data-scroll-container]');
+    const scrollContainer = moduleRoot.querySelector('.spine-main');
     const scrollTrack = scrollContainer ? scrollContainer.querySelector('.wrap') : null;
     let syncTicking = false;
     const SYNC_EPSILON = 0.75;

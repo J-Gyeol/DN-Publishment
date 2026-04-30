@@ -395,12 +395,6 @@ section.m-flow-sec div .text-slide h3 span {
 
 /* process sec  */
 
-#smooth-wrapper {
-    width: 100%;
-    height: auto;
-    overflow: visible;
-}
-
 #smooth-content {
     min-height: 100vh;
     will-change: transform;

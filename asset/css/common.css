@@ -151,8 +151,12 @@ html {
 .menu-list,
 .menu-list-btn {
     display: flex;
-    gap: 2.7rem;
+    gap: 2.4rem;
     align-items: center;
+}
+
+.menu-wrap {
+    gap: 1.8rem;
 }
 
 .menu-list li a {
@@ -167,7 +171,7 @@ html {
 .menu-list-btn .menu-contact {
     position: relative;
     display: block;
-    width: 9.8rem;
+    width: clamp(8rem, 9rem, 10rem);
     height: 2.5rem;
     background-color: var(--primary-color);
     border-radius: 1.875rem;

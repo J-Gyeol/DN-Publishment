@@ -21,7 +21,7 @@ body {
 }
 
 .about-hero {
-    padding: 8.2rem 0 6.6rem;
+    padding: 20rem 0 15rem;
 }
 
 .about-hero-text-wrap {
@@ -41,9 +41,9 @@ body {
 }
 
 .about-hero-desc {
-    margin-top: 1.8rem;
+    margin-top: clamp(2rem, 4vw, 4rem);
     font-family: "Noto Serif", serif;
-    font-size: clamp(1.05rem, 1.5vw, 1.5rem);
+    font-size: clamp(1.05rem, 1.6vw, 1.5rem);
     color: var(--text-color);
     line-height: 1.6;
 }
@@ -72,7 +72,7 @@ body {
 }
 
 .about-content {
-    padding: 3rem 0 6.4rem;
+    padding: 8rem 0 15rem;
 }
 
 .about-content > .container {
@@ -248,7 +248,7 @@ body {
 
 @media (max-width: 1280px) {
     .about-hero {
-        padding: 7.2rem 0 5.6rem;
+        padding: 15rem 0 10rem;
     }
 
     .about-content-wrap {
@@ -279,7 +279,7 @@ body {
     }
 
     .about-content {
-        padding: 1.4rem 0 1.8rem;
+        padding: 7rem 0 1.8rem;
     }
 
     .about-content > .container,
@@ -288,6 +288,11 @@ body {
     .about-panel {
         height: auto !important;
         min-height: 0 !important;
+    }
+
+    .about-hero-desc {
+        font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+        margin-top: 2rem;
     }
 
     .about-tab-wrap {
@@ -319,9 +324,10 @@ body {
     }
 
     .about-panel-wrap {
+        width: 100%;
         max-width: 100%;
         min-height: auto;
-        flex: 0 1 32rem;
+        flex: 0 1 40rem;
     }
 
     .about-panel .en-title {
@@ -347,11 +353,11 @@ body {
 
 @media (max-width: 768px) {
     .about-hero {
-        padding: 5.2rem 0 4.4rem;
+        padding: 10rem 0 8rem;
     }
 
     .about-content {
-        padding: 1rem 0 1.4rem;
+        padding: 6rem 0 1.4rem;
     }
 
     .about-content-title {
@@ -366,6 +372,11 @@ body {
     .about-hero-desc br,
     .panel-intro br {
         display: none;
+    }
+
+    .about-hero-desc {
+        margin-top: 1.5rem;
+        font-size: clamp(1.05rem, 2.2vw, 1.2rem);
     }
 
     .about-tab-wrap {
@@ -403,15 +414,22 @@ body {
         min-height: 2.15rem;
         background-size: 1.92rem 1.92rem;
     }
+
+    .about-panel-wrap {
+        width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        flex: 0 1 32rem;
+    }
 }
 
 @media (max-width: 540px) {
     .about-content {
-        padding: 0.8rem 0 1.2rem;
+        padding: 2rem 0 1.2rem;
     }
 
     .about-hero {
-        padding: 5.4rem 0 4.6rem;
+        padding: 8rem 0 9rem;
     }
 
     .about-hero-title {
@@ -421,8 +439,7 @@ body {
 
     .about-hero-desc {
         margin-top: 1.5rem;
-        font-size: 1.02rem;
-        line-height: 1.55;
+        font-size: 1.1rem;
     }
 
     .book-symbol {

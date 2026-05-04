@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+body {
+	visibility: hidden;
+	opacity: 0;
+	background-color: #f7f7f7;
+	font-family: "Poppins", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+.hero {
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: clamp(2rem, 5vh, 4rem) 1rem clamp(3rem, 8vh, 6rem);
+	box-sizing: border-box;
+}
+
+.hero__inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: clamp(1.5rem, 4vw, 2.5rem);
+	width: 100%;
+	max-width: 960px;
+}
+
+.hero .tagline {
+	z-index: 10;
+	max-width: 70%;
+	text-align: center;
+	font-size: 68px;
+	font-weight: 400;
+	user-select: none;
+}
+
+.book-page--under-hero {
+	width: 100%;
+	background: transparent !important;
+
+	.book-scroll-track {
+		min-height: 0;
+		position: relative;
+	}
+
+	.book-sticky {
+		position: relative;
+		top: auto;
+		min-height: 0;
+		padding-bottom: 0;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+	}
+
+	.book-section__inner {
+		padding-top: 0;
+		text-align: center;
+	}
+
+	.book-unfold {
+		justify-content: center;
+	}
+}
+
+.content {
+	max-width: 80%;
+	margin: 0 auto 120px auto;
+	line-height: 1.7;
+	font-size: 24px;
+}

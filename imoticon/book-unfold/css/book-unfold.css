@@ -21,6 +21,8 @@ body {
   /* 닫힌 상태에서 팬 전체를 왼쪽 영역으로 옮김 → 펼치면 중앙(반원 중심)으로 이동 */
   --fan-start-shift: min(28vw, 140px);
   --fan-end-shift: 14px;
+  /* 스크롤 진행(--book-progress)에 비례해 적용: 완전히 펼친 뒤(1) 이 만큼 더 왼쪽 */
+  --stage-end-nudge-left: 44px;
   background: #dfdfdf;
 }
 
@@ -90,7 +92,8 @@ body {
   transform: translateX(
     calc(
       var(--book-progress) * var(--fan-end-shift) -
-        (1 - var(--book-progress)) * var(--fan-start-shift)
+        (1 - var(--book-progress)) * var(--fan-start-shift) -
+        var(--book-progress) * var(--stage-end-nudge-left)
     )
   );
   transform-origin: 50% 100%;

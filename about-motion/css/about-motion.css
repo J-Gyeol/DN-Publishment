@@ -1,0 +1,275 @@
+/* GSAP 로드 전 깜빡임 방지 (imoticon/scroll과 동일 패턴) */
+body {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* Locomotive 스크롤 영역: 헤더~푸터까지 한 덩어리로 움직여 푸터가 사라지지 않게 함 */
+.scrollContainer {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.scrollContainer > header {
+  position: relative;
+  z-index: 2;
+}
+
+.scrollContainer > footer.footer-sec {
+  width: 100%;
+}
+
+/* scroll 데모의 hero__inner에 대응: 텍스트 → 북 → 심볼 세로 스택 */
+
+.about-hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.25rem, 4vw, 5rem);
+  width: 100%;
+}
+
+.about-hero--motion .about-hero-text-wrap {
+  width: 100%;
+}
+
+/* 타이틀 전체 600 + 강조(.colorful)는 포인트 컬러 */
+.about-hero--motion .about-hero-title {
+  font-weight: 600;
+}
+
+.about-hero--motion .about-hero-title .colorful {
+  color: var(--point-color);
+}
+
+/* 북 무대: book-unfold.css의 긴 트랙·sticky 무력화 */
+.book-page--under-hero {
+  width: 100%;
+  max-width: 100%;
+  background: transparent !important;
+  --book-motion-k: 1;
+  --fan-start-shift: min(calc(28vw * var(--book-motion-k)), calc(140px * var(--book-motion-k)));
+  --fan-end-shift: calc(14px * var(--book-motion-k));
+  --stage-end-nudge-left: calc(44px * var(--book-motion-k));
+  --base-floor-start-y: calc(-5px * var(--book-motion-k));
+  --base-floor-end-y: calc(-10px * var(--book-motion-k));
+}
+
+.book-page--under-hero .book-layer[data-layer="0"] {
+  --stack-shift: 0px;
+}
+
+.book-page--under-hero .book-layer[data-layer]:not([data-layer="0"]) {
+  --stack-shift: calc(-9px * var(--idx) * var(--book-motion-k));
+}
+
+.book-page--under-hero .book-layer[data-layer="1"] {
+  --lift-offset: calc(3px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="2"] {
+  --pivot-offset: calc(2px * var(--book-motion-k));
+  --lift-offset: calc(12px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="3"] {
+  --pivot-offset: calc(6px * var(--book-motion-k));
+  --lift-offset: calc(19px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="4"] {
+  --pivot-offset: calc(10px * var(--book-motion-k));
+  --lift-offset: calc(24px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="5"] {
+  --pivot-offset: calc(16px * var(--book-motion-k));
+  --lift-offset: calc(28px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="6"] {
+  --pivot-offset: calc(22px * var(--book-motion-k));
+  --lift-offset: calc(30px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="7"] {
+  --pivot-offset: calc(30px * var(--book-motion-k));
+  --lift-offset: calc(31px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="8"] {
+  --pivot-offset: calc(38px * var(--book-motion-k));
+  --lift-offset: calc(30.5px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="9"] {
+  --pivot-offset: calc(46px * var(--book-motion-k));
+  --lift-offset: calc(27px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="10"] {
+  --pivot-offset: calc(52px * var(--book-motion-k));
+  --lift-offset: calc(22px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="11"] {
+  --pivot-offset: calc(56px * var(--book-motion-k));
+  --lift-offset: calc(16px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="12"] {
+  --pivot-offset: calc(59px * var(--book-motion-k));
+  --lift-offset: calc(8px * var(--book-motion-k));
+}
+.book-page--under-hero .book-layer[data-layer="13"] {
+  --pivot-offset: calc(60px * var(--book-motion-k));
+}
+
+.book-page--under-hero .book-scroll-track {
+  min-height: 0;
+  position: relative;
+}
+
+.book-page--under-hero .book-sticky {
+  position: relative;
+  top: auto;
+  min-height: 0;
+  padding-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.book-page--under-hero .book-section__inner {
+  padding-top: 0;
+  text-align: center;
+}
+
+.book-page--under-hero .book-unfold {
+  justify-content: center;
+}
+
+/*
+  1920px 이상: imoticon/book-unfold 기본과 동일.
+  1919px 이하부터만 단계적으로 축소.
+  1024px 이하: --book-motion-k = 페이지너비/150 — 이미지·피벗·리프트·팬·스택을 같은 비율로 맞춤.
+*/
+
+.book-page--under-hero .book-unfold__stage {
+  width: min(92vw, 440px);
+  height: clamp(200px, 38vh, 280px);
+}
+
+/*
+  asset/css/reset.css: img { width: 100%; height: 100%; object-fit: cover; }
+  → .book-layer는 width/height가 없어 기준이 0에 가깝고, 1~12번 img만 0×0으로 수렴.
+*/
+.book-page--under-hero .book-unfold__stage .book-layer:not(.book-layer--base-floor):not(.book-layer--cover-top) img {
+  width: 150px;
+  height: auto;
+  max-width: none;
+  object-fit: fill;
+}
+
+.book-page--under-hero .book-unfold__stage .book-layer--base-floor img,
+.book-page--under-hero .book-unfold__stage .book-layer--cover-top img {
+  width: 180px;
+  height: auto;
+  max-width: none;
+}
+
+@media (max-width: 1919px) {
+  .book-page--under-hero .book-unfold__stage {
+    width: min(90vw, 400px);
+    height: clamp(175px, 34vh, 248px);
+  }
+
+  .book-page--under-hero .book-unfold__stage .book-layer:not(.book-layer--base-floor):not(.book-layer--cover-top) img {
+    width: 136px;
+  }
+
+  .book-page--under-hero .book-unfold__stage .book-layer--base-floor img,
+  .book-page--under-hero .book-unfold__stage .book-layer--cover-top img {
+    width: 164px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .about-hero__inner {
+    gap: clamp(1.25rem, 3.5vw, 3rem);
+  }
+  
+  .book-page--under-hero .book-unfold__stage {
+    width: min(88vw, 360px);
+    height: clamp(158px, 30vh, 220px);
+  }
+
+  .book-page--under-hero .book-unfold__stage .book-layer:not(.book-layer--base-floor):not(.book-layer--cover-top) img {
+    width: 122px;
+  }
+
+  .book-page--under-hero .book-unfold__stage .book-layer--base-floor img,
+  .book-page--under-hero .book-unfold__stage .book-layer--cover-top img {
+    width: 148px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .about-hero__inner {
+    gap: clamp(1.25rem, 3.5vw, 2rem);
+  }
+  
+  .book-page--under-hero {
+    --book-motion-k: 0.68;
+  }
+
+  .book-page--under-hero .book-unfold__stage {
+    width: min(86vw, 320px);
+    height: clamp(145px, 16vh, 200px);
+  }
+
+  .book-page--under-hero .book-unfold__stage .book-layer:not(.book-layer--base-floor):not(.book-layer--cover-top) img {
+    width: 102px;
+  }
+
+  .book-page--under-hero .book-unfold__stage .book-layer--base-floor img,
+  .book-page--under-hero .book-unfold__stage .book-layer--cover-top img {
+    width: 122px;
+  }
+}
+
+/* 1024과 동일: 이미지를 한 단계 더 줄이고 k = 페이지너비/150 (84/150) */
+@media (max-width: 768px) {
+  .book-page--under-hero {
+    --book-motion-k: 0.56;
+  }
+
+  .book-page--under-hero .book-unfold__stage {
+    width: min(84vw, 272px);
+    height: clamp(125px, 13vh, 160px);
+  }
+
+  .book-page--under-hero .book-unfold__stage .book-layer:not(.book-layer--base-floor):not(.book-layer--cover-top) img {
+    width: 84px;
+  }
+
+  .book-page--under-hero .book-unfold__stage .book-layer--base-floor img,
+  .book-page--under-hero .book-unfold__stage .book-layer--cover-top img {
+    width: 101px;
+  }
+}
+
+@media (max-width: 402px) {
+  .book-page--under-hero {
+    --book-motion-k: 0.493;
+  }
+
+  .book-page--under-hero .book-unfold__stage {
+    width: min(90vw, 240px);
+    height: clamp(115px, 24vh, 155px);
+  }
+
+  .book-page--under-hero .book-unfold__stage .book-layer:not(.book-layer--base-floor):not(.book-layer--cover-top) img {
+    width: 74px;
+  }
+
+  .book-page--under-hero .book-unfold__stage .book-layer--base-floor img,
+  .book-page--under-hero .book-unfold__stage .book-layer--cover-top img {
+    width: 89px;
+  }
+}
+
+/* GSAP 초기 상태용 */
+body.is-motion-ready {
+  visibility: visible;
+  opacity: 1;
+}
